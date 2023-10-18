@@ -1,0 +1,50 @@
+<div class="mainCls Courses_list body_top_padding coupon_list">
+    <div class="col-md-2"></div>
+    <div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<ol class="breadcrumb">
+					<li><a [routerLink] = "['/admin/dashbord']">Dashboard</a></li>
+					<li><a [routerLink] = "['/admin/testSeries']">Test Series</a></li>
+					<li><a (click)="gotoSeriesCoupon()">Series Coupon List : {{listPage.ser_name}}</a></li>
+					<li class="active">Coupon</li>
+				</ol></div>	
+			<div class="panel-body"> 
+				<table class="table table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <th class="list_no" >#</th>
+					  <th>Coupon Code</th>
+					  <th class="list_no">Status</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr *ngFor="let coupon of coupons; let i=index">
+					  <td class="list_no" >{{i+1}}</td>
+					  <td>{{coupon.cou_code}}</td>
+					  <td class="list_no">
+					  	<button class="btn " [ngClass]="coupon.cou_status ==  1 ? 'btn-primary btn-light_green': coupon.cou_status == 0 ? ' btn-primary btn-light_blue':'' "><span *ngIf="coupon.cou_status == 0">Unused</span>
+						<span *ngIf="coupon.cou_status==1">Used</span></button>
+					  </td>
+					</tr>    
+				  </tbody>
+				</table>
+				<div class="row"> 
+					<div class="col-xs-6 col-6" >
+					<label class="table_datashow"> Show <select name="endLimit" [(ngModel)]="listEndLimit" (change)="endLimitChange(listEndLimit)">
+							  	<option Value="10" selected ="listEndLimit == 10">10</option>
+							  	<option Value="50" selected ="listEndLimit == 50">50</option>
+							  	<option Value="100" selected="listEndLimit == 100">100</option>
+							  	<option Value="500" selected ="listEndLimit == 500">500</option>
+							  	<option Value="1000" selected="listEndLimit == 1000">1000</option>
+							</select>
+							</label>
+						</div>
+				<div class="col-xs-12 col-12" style="text-align: right;">
+					<pagination [totalItems]="couponTotalItems" [itemsPerPage]='itemPerPageLimit' [(ngModel)]="couponCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="getCouponListDetail($event)" [boundaryLinks]="true"></pagination>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,52 @@
+.Danger_btn{
+    width: auto;
+    height: auto;
+    line-height: unset;
+}
+.search-box{
+	margin-bottom:15px;
+	select {
+		float: left;
+		height: 34px;
+		border-radius: 3px;
+		border-color: #ccc;
+		width:80px;		
+	}	
+	.search_que_list{
+		line-height: 2.4;
+		padding-left: 59px;
+		input{
+			margin: 0 7px 0 27px;
+		}
+	}
+}
+.ques_box{
+	margin-bottom: 25px;
+    background: #F5F5F5;
+    padding: 6px 15px;
+	p{
+		margin-bottom:0;
+	}
+}
+.no-padding{
+	padding-left:0;
+	padding-right:0;
+}
+.ans_cls{
+	width: 121px;
+}
+@media (min-width: 768px){
+
+		.modal-dialog {
+			width: 990px;
+		}		
+
+}
+@media (max-width: 1280px){
+	.search-box{
+		margin-bottom:15px;
+		select {
+			width:auto;
+		}
+	}
+}

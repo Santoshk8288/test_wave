@@ -1,0 +1,111 @@
+<div class="mainCls manage-Courses body_top_padding ">
+    <div class="col-md-2"></div>
+    <div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Course: {{courseName}}</div>	
+			<div class="panel-body"> 
+					<!-- <button type="button" class="btn btn-primary btn-light_blue" (click)="openModal(template)">Add Subject</button>
+		  -->
+				<table class="table table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <th>Subject Name</th>
+					  <th class="icon_btn " >Edit</th>
+					  <th class="icon_btn" >Delete</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr *ngFor="let subject of subjects;let i=index;">
+					  
+					  <td>{{subject.sub_name}}</td>
+					  <td class="icon_btn" > <button type="button" class="btn btn-primary btn-light_green" disabled><i class="icon-pencil" ></i></button></td>
+					  <td class="icon_btn" > <button type="button" class="btn btn-danger Danger_btn" disabled><i class="icon-bin" ></i></button></td>
+					  
+					</tr>  
+					<tr *ngFor="let insSub of insSubjects;let k=index;">
+					  
+					  <td>{{insSub.sub_name}}</td>
+					  <td class="icon_btn" > <button type="button" class="btn btn-primary btn-light_green" (click)="openEditSubjectModel(k);openModal(templateEdit)"><i class="icon-pencil" ></i></button></td>
+					  <td class="icon_btn" > <button type="button" class="btn btn-danger Danger_btn" (click)="removeSubjectFromCourse(insSub,k)"><i class="icon-bin" ></i></button></td>
+					  
+					</tr>  
+					 <!-- <tr *ngFor="let insSub of insSubjects; let i=index">
+					 
+					  <td>{{insSub.sub_name}}</td>
+					  <td class="icon_btn" > <button type="button" class="btn btn-primary btn-light_green" (click)="gotoChooseSubject(customCrs.category[0].cat_id)"><i class="icon-pencil" ></i></button></td>
+					  <td class="icon_btn" > <button type="button" class="btn btn-danger Danger_btn" (click)="removeCourse(customCrs.crs_id,i)"><i class="icon-bin" ></i></button></td>
+					</tr>  -->   
+				  </tbody>
+					  <div class="form-group" style="text-align: right;">
+						<label class="control-label col-sm-4"></label>
+						<div class="col-sm-8">
+							
+						<template #template>
+						  <!-- <div class="modal-header"> -->
+							<!-- <h4 class="modal-title pull-left">Course</h4> -->
+							<!-- <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"> -->
+							  <!-- <span aria-hidden="true">&times;</span> -->
+							<!-- </button> -->
+						  <!-- </div> -->
+						  <!-- <div class="modal-body"> -->
+							<!-- <input type="text" name="crs" placeholder="Enter Course name" [(ngModel)]="crs"> -->
+							<!-- <button type="button" class="btn btn-primary btn-light_blue" (click)="addCourse(crs);modalRef.hide()">Save</button> -->
+							<!-- <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">Cancel</button> -->
+						  <!-- </div> -->
+						  <div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">{{courseName}} </h4>							  
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+								  <label class="control-label"> Subject Name</label>
+								  <input class="form-control"  type="text" name="subject" [(ngModel)]="subject" placeholder="Enter subject">
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary btn-light_green pull-left" (click)="addSubject(subject);modalRef.hide()">Save</button>
+								<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="modalRef.hide()">Cancel</button>							
+							</div>
+						  </div>
+						</template>
+						<template #templateEdit>
+				  <!-- <div class="modal-header"> -->
+				    <!-- <h4 class="modal-title pull-left">Edit Subject</h4> -->
+				    <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"> -->
+				      <!-- <span aria-hidden="true">&times;</span> -->
+				    <!-- </button> -->
+				  <!-- </div> -->
+				  <!-- <div class="modal-body"> -->
+				    <!-- <input type="text" name="subject" [(ngModel)]="subject.sub_name" > -->
+				    <!-- <button type="button" (click)="editSubject(subject);modalRef.hide()">Edit</button> -->
+				    <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">Cancel</button> -->
+				  <!-- </div> -->
+				  
+				    <div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">&times;</button>
+							<h4 class="modal-title">Edit Subject</h4>														
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+							  <label class="control-label"> Edit Subject </label>
+							   <input class="form-control"  type="text" name="subject" [(ngModel)]="subject.sub_name" placeholder="Enter subject">
+							   
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-light_green pull-left" (click)="editSubject(subject);modalRef.hide()">Update</button>
+							<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="modalRef.hide()">Cancel</button>						
+						</div>
+					</div>	
+				</template>
+
+							<!-- <label class="control-label col-sm-6">Add Courses:</label>
+							 -->
+						</div>
+					</div>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

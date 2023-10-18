@@ -1,0 +1,91 @@
+<div class="mainCls addCourse-page body-top-padding"> 
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<ol class="breadcrumb">
+					<li><a [routerLink] = "['/admin/dashbord']">Dashboard</a></li>
+					<li><a [routerLink] = "['/admin/courseList']">Course</a></li>
+					<li class="active">Course Name : {{courseName}}</li>
+				</ol>
+			</div>
+			<div class="panel-body"> 
+				<!-- <button type="button" class="btn btn-primary btn-light_blue" (click)="openModal(template)">Add Subjects</button> -->
+				<!-- <button (click)="gotoManageCrs()"  class="btn btn-primary btn-light_blue" >Manage Course</button> -->	 
+				<form #addCourse="ngForm" class="addCourse_form">					
+					<div>
+						<div class="left-side-select-box ">
+							<label>Choose subjects for Course</label>
+							<ul>
+								<li *ngFor="let subject of subjects;let i= index" (click)="shiftLeftToRight(i)" >
+									<span  *ngIf="subjects.length != 0">{{subject.sub_name}}</span>
+									<!-- <button type="button" class="btn btn-primary btn-light_green " (click)="openEditSubjectModel(i);openModal(templateEdit)">Edit <i class="icon-pencil" ></i></button> -->
+								</li>
+							</ul>
+							<span *ngIf="subjects.length == 0">All subject addded in course</span>
+						</div>
+						<div class="pull-right right-side-selected-box">
+							<label>Selected subject</label>
+							<ul>
+								<li *ngFor="let shiftSub of shiftSubject;let i = index" (click)="removeSubjectFromCourse(shiftSub,i);" >
+									<!-- <span (click)="shiftRightToLeft(i);removeSubjectFromCourse(shiftSub,i)" >{{shiftSub.sub_name}}</span></li> -->
+									<span *ngIf="shiftSubject.length != 0" >{{shiftSub.sub_name}}</span>
+								</li>
+							</ul>
+							<span *ngIf="shiftSubject.length == 0">No subject added</span>
+						</div>
+						<button type="button" class="btn btn-primary btn-light_green save_btn pull-left" (click)="addSelectedSubInCourse()">Save</button>
+					</div>
+				</form>
+				<div class="col-sm-8"> 
+					<ng-template #template>				  
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">&times;</button>
+								<h4 class="modal-title">Subject</h4>														
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="control-label"> Add subject </label>
+									<input class="form-control" type="text" name="subject" [(ngModel)]="subject" placeholder="Enter subject" />
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary btn-light_green pull-left" (click)="addSubject(subject);modalRef.hide()">Save</button>
+								<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="modalRef.hide()">Cancel</button>						
+							</div>
+						</div>
+					</ng-template>
+
+					<ng-template #templateEdit>
+						<!-- <div class="modal-header"> -->
+						<!-- <h4 class="modal-title pull-left">Edit Subject</h4> -->
+						<!-- <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"> -->
+						<!-- <span aria-hidden="true">&times;</span> -->
+						<!-- </button> -->
+						<!-- </div> -->
+						<!-- <div class="modal-body"> -->
+						<!-- <input type="text" name="subject" [(ngModel)]="subject.sub_name" > -->
+						<!-- <button type="button" (click)="editSubject(subject);modalRef.hide()">Edit</button> -->
+						<!-- <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">Cancel</button> -->
+						<!-- </div> -->
+				  	    <div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">&times;</button>
+								<h4 class="modal-title">Edit Subject</h4>														
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="control-label">Edit Subject</label>
+									<input class="form-control"  type="text" name="subject" [(ngModel)]="subject.sub_name" placeholder="Enter subject"/>								   
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary btn-light_green pull-left" (click)="editSubject(subject);modalRef.hide()">Edit</button>
+								<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="modalRef.hide()">Cancel</button>						
+							</div>
+						</div>	
+					</ng-template>						
+				</div>
+			</div>
+		</div>
+	</div>

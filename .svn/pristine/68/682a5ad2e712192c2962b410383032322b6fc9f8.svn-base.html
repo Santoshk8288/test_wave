@@ -1,0 +1,107 @@
+<!-- For test Result list -->
+<div class="row mainCls" *ngIf="testData?.test_id">
+    <div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<ol class="breadcrumb">
+				  <li><a [routerLink]="['/admin/dashbord']">Dashboard</a></li>
+				  <li><a [routerLink]="['/admin/testList']">Test</a></li>
+				  <li class="active">Test Result List</li>
+				</ol>
+				</div>
+			<div class="panel-body">
+				<label class="pull-left Testname">Test name : <span>{{testData.test_name}}</span></label>
+				<label class="pull-right Testname">Maximum marks : <span>{{testData.test_max_marks}}</span></label>
+				<table class="table table-bordered table-hover">
+	    	      <thead>
+			        <tr>
+			          <th class="list_no" >#</th>
+			          <th class="">Student</th>
+			          <th class="sub_text text-center">Attempt</th>
+			          <th class="sub_text text-center">Correct</th>
+			          <th class="sub_text text-center">Obtained</th>
+			        </tr>
+			      </thead>
+			      <tbody>
+			        <tr *ngFor="let details of historyList;let k = index" (click)="viewReport(details)" data-toggle="modal" data-target="#myModalFullscreen">
+			          <td > {{k+1}}</td>
+			          <td  [routerLink]="['/admin/resultList']">{{details.stu_fname}} {{ details.stu_lname}}</td>
+			          <td class="sub_text text-center">{{details?.res_total_attempt}}</td>
+			          <td class="sub_text text-center">{{details?.res_correct_answer}}</td>
+			          <td class="sub_text text-center">{{details?.res_marks_abtain}}</td>
+			        </tr>      
+			      </tbody>
+			    </table>
+		  	<div class="col-xs-12 col-12" style="text-align: right;">
+				<pagination [totalItems]="historyTotalItems" [itemsPerPage]='itemPerPageLimit' [(ngModel)]="historyCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="getHistoryList($event)" [boundaryLinks]="true"></pagination>
+			</div>
+		  	</div>
+		  	
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade modal-fullscreen  footer-to-bottom" id="myModalFullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog animated zoomInLeft">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ol class="breadcrumb">
+					  <li><a [routerLink]="['/admin/dashbord']" data-dismiss="modal">Dashboard</a></li>
+					  <li><a [routerLink]="['/admin/resultList']"  data-dismiss="modal">Test Result</a></li>
+					  <li class="active">Result</li>
+					</ol>
+	        </div>
+            <div class="modal-body">
+	               
+			<div class="panel-body">
+			<label class="pull-left Testname">Test Name : <span *ngIf="resultCount == 1">{{resut?.test_name}}</span></label>
+			<div *ngIf="resultCount==1">
+				<div  class="col-md-5 pull-right result_show_cls" *ngIf="resut?.res_marks_abtain >= resut?.test_min_marks">
+					<h4 class=" result_mrks text-center"><span >Congratulation !!!</span> <span>{{stuData.stu_fname}} {{ stuData.stu_lname}} got</span> <b>{{resut?.res_marks_abtain}}</b> marks out of 
+			     		<b>{{resut?.test_max_marks}}</b></h4>
+				  </div>
+				 <div  class="col-md-4 pull-right result_fail_show_cls" *ngIf="resut?.res_marks_abtain < resut?.test_min_marks" >
+					<!-- <h4 > Result :-</h4> -->
+					<h4 class=" result_mrks text-center"><span >Failed !!!</span><span>{{stuData.stu_fname}} {{ stuData.stu_lname}} got</span> <b>{{resut?.res_marks_abtain}}</b> marks out of 
+			     		<b>{{resut?.test_max_marks}}</b></h4>
+				  </div> 
+			</div>
+				<table class="table table-bordered table-hover">
+	    	      <thead>
+			        <tr>
+			          <th>Subject Name</th>
+			          <th class="sub_text text-center">Total Questions</th>
+			          <th class="sub_text text-center">Total marks</th>
+			          <th class="sub_text text-center">Total Attempt</th>
+			          <th class="sub_text text-center">Correct Answer</th>
+			        </tr>
+			      </thead>
+			      <tbody *ngIf="resultCount==1">
+			        <tr *ngFor="let details of resut?.subject" >
+			          <td>{{details.sub_name}}</td>
+			          <td class="sub_text text-center">{{details.tsmm_total_questions}}</td>
+			          <td class="sub_text text-center">{{details.tsmm_total_marks}}</td>
+			          <td class="sub_text text-center">{{details.attemptQues}}</td>
+			          <td class="sub_text text-center">{{details.rightAns}}</td>
+			        </tr> 
+			        
+			      </tbody>
+			      <tbody>
+			      	<tr *ngIf="resultCount == 0">No result found</tr>
+			      </tbody>
+			    </table>			     
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" data-dismiss="modal">Cancel</button>						
+				</div>
+				  
+		  	</div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+

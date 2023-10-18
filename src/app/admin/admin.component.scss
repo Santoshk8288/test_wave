@@ -1,0 +1,45 @@
+$white:#fff;
+$red:#d5300e;
+$green:#58a61b;
+$dark_green:#35690e;
+$purple:#704dab;
+$dark_blue:#35497b;
+$light_blue:#83beff;
+$light_gray:#757575;
+$dark_gray:#535353;
+
+
+.list-inline {
+    background: #fff;
+	height:auto;
+    line-height: 3;
+	.header{
+		text-align: center;
+		width: 20%;
+		background: #dce2ef;
+	}
+	.navbar-nav{
+		.active{
+			background:$light_gray;
+			color:$white;
+		}
+		.active a{
+			color:$white;
+			background:$light_gray;
+		}
+	}		
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #333;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #fff;
+}
+.navbar-brand {
+    width: auto;
+}
+@media (max-width:640px){
+	.pull_none{
+		float: none !important;
+	}
+}

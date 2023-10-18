@@ -1,0 +1,153 @@
+<div class="container-fluid mainCls ">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="card card-stats">
+					<div class="card-header" data-background-color="orange">
+						<i class="glyphicon icon-books"></i>
+					</div>
+					<div class="card-content">
+						<p class="category">Students</p>
+						<h3 class="title">{{showCount.studentCount}}</h3>
+					</div>
+					<div class="card-footer">
+						<div class="stats">
+							Total Number of Student 
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="card card-stats">
+					<div class="card-header" data-background-color="green">
+						<i class="glyphicon icon-paste"></i>
+					</div>
+					<div class="card-content">
+						<p class="category">Courses</p>
+						<h3 class="title">{{showCount.courseCount}}</h3>
+					</div>
+					<div class="card-footer">
+						<div class="stats">
+							Total Number of Courses 
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="card card-stats">
+					<div class="card-header" data-background-color="red">
+						<i class="glyphicon icon-trophy"></i>
+					</div>
+					<div class="card-content">
+						<p class="category">Practice Test</p>
+						<h3 class="title">{{showCount.practiceCount}}</h3>
+					</div>
+					<div class="card-footer">
+						<div class="stats">
+							Total Number of Practice Test
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6">
+				<div class="card card-stats">
+					<div class="card-header" data-background-color="blue">
+						<i class="glyphicon icon-trophy"></i>
+					</div>
+					<div class="card-content">
+						<p class="category">Speed Test</p>
+						<h3 class="title">{{showCount.speedCount}}</h3>
+					</div>
+					<div class="card-footer">
+						<div class="stats">
+							Total Number of Speed Test
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="col-md-6 clear">
+				<div class="card chart-card">
+					<div class="card-header card-chart" data-background-color="green">
+						<div class="ct-chart" style="display: block;">
+							<canvas baseChart 
+								[datasets]="lineChartData"
+								[labels]="lineChartLabels"
+								[options]="lineChartOptions"
+								[colors]="lineChartColors"
+								[legend]="lineChartLegend"
+								[chartType]="lineChartType"
+								(chartHover)="chartHovered($event)"
+								(chartClick)="chartClicked($event)">
+							</canvas>
+						</div>
+					</div>
+					<div class="card-content">
+						<p class="category">
+							Upcoming Test 
+						</p>
+					</div>
+					<div class="card-footer">
+						<div class="stats">
+							Upcoming Test This Week Record
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card chart-card">
+					<div class="card-header card-chart" data-background-color="orange">
+						<div class="ct-chart" style="display: block">
+							<canvas baseChart
+									[datasets]="barChartData"
+									[labels]="barChartLabels"
+									[options]="barChartOptions"
+									[colors]="barChartColors"
+									[chartType]="barChartType"
+									(chartHover)="chartHovered($event)"
+									(chartClick)="chartClicked($event)">
+							</canvas>
+						</div>
+					</div>
+					<div class="card-content">						
+						<p class="category">Register Student</p>
+					</div>
+					<div class="card-footer">
+						<div class="stats">
+							Monthly Register Student This Year
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">    	
+				<div class="panel panel-default Test-panel">
+					<div class="panel-heading">Last 15 Online Speed Test</div>
+					<div class="panel-body table-responsive">
+						<table class="table table-bordered table-hover ">
+							<thead>
+								<tr>
+									<th class="list_no">#</th>
+									<th>Test Name</th>
+									<th class="sub_text text-center">Open Date</th>
+									<th class="sub_text text-center">Close Date</th>
+									<th class="text-center">View</th> 
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let details of speedTest; let i= index;">
+									<td class="list_no"> {{i+1}}</td>
+									<td>{{details.test_name}}</td>
+									<td class="sub_text text-center">{{details.test_opendate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+									<td class="sub_text text-center">{{details.test_closedate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td> 
+									<td class="sub_text text-center"><a class="btn btn-primary btn-light_blue" (click)="goToTest(details.test_id)">View Test</a></td>
+								</tr>      
+							</tbody>
+						</table>
+					</div>
+					
+						
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

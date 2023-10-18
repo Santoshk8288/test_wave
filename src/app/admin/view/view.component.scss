@@ -1,0 +1,72 @@
+.Que_paper{
+	background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 2px 8px #ccc;
+    padding: 30px;
+    display: flow-root;
+	margin-bottom:15px;
+
+	.title{
+		border-top: 3px solid black;
+		border-top-style: double;
+		border-bottom: 3px solid black;
+		border-bottom-style: double;
+		width: 335px;
+		text-align: center;
+		padding: 10px 0;
+		margin: 0px auto;
+	}
+	h4{
+		font-size:16px;
+		padding: 5px 15px 15px;
+		margin-top: 0;
+		margin-bottom: 0;
+		span{
+			font-weight: 600;
+			color: #35497b;
+			text-transform: capitalize;
+		}
+	}
+	.paper_header_div{
+		border-bottom:1px solid;
+		margin: 20px 0;
+		.mark_txt{			
+			display: inline-block;
+		}
+		.total_tym{
+			display: inline-block;
+			float: right;
+		}
+	}
+	
+	ul{
+		padding-left:15px;
+		display: flow-root;
+		.Question{
+			padding-top: 20px;
+			font-size:20px;
+			list-style:none;	
+			list-style: decimal;			
+			.option{
+				padding-top:10px;
+				li{
+					font-size: 16px;
+					padding: 5px 0 10px;
+					list-style: decimal;	
+				}
+				li:nth-child(3),li:nth-child(5){
+					clear:both
+				}
+			}
+		}
+	}	
+	.Que_paper_view_quelist	{
+		word-break: break-all;
+	}
+}
+
+.Danger_btn {
+	position: fixed;
+	bottom: 3%;
+    left: 1%;
+}

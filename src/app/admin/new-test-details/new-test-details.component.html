@@ -1,0 +1,192 @@
+<div class="col-md-12 col-sm-12 new-task-detail body_top_padding">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<ol class="breadcrumb">
+				<li><a [routerLink] = "['/admin/dashbord']" (click) = "clearTestId();">Dashboard</a></li>
+				<li><a [routerLink] = "['/admin/testList']" (click) = "clearTestId();">Test</a></li>
+				<li class="active">
+					<span  *ngIf="!showEdit">Add Test</span>
+					<span *ngIf="showEdit">Edit Test</span>
+				</li>
+			</ol>
+		</div>
+		<div class="contactPageCol panel-body">
+			<form class="form" #detailsTestForm1="ngForm">
+			<!-- <form > -->
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<div class="form-group">
+							<label>Name<span class="error-dangercls">*</span></label>
+							<input type="text" class="form-control" placeholder="Test Name" [(ngModel)]="detailsTestForm.name" name="name" required #name="ngModel" pattern="[a-zA-Z][a-zA-Z ]+" [disabled]="resId != null"/>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-sm-3">
+						<div class="form-group">
+							<label>Duration<span class="error-dangercls">*</span></label>
+							<input type="number" class="form-control" placeholder="Test Duration" [(ngModel)]="detailsTestForm.duration" name="duration" min="1" #duration="ngModel" required [disabled]="resId != null"/>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-sm-3">
+						<div class="form-group">
+							<label>Total Question<span class="error-dangercls">*</span></label>
+							<input type="number" class="form-control" placeholder="Total Question" [(ngModel)]="detailsTestForm.totalques" name="totalques" min="1" #totalques="ngModel" required [disabled]="resId != null"/>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-sm-3">
+						<!-- <div class="form-group">
+							<label>Total Marks*</label>
+							<input type="number" class="form-control" placeholder="Total Marks"  [(ngModel)]="detailsTestForm.totalMarks" name="totalMarks" min="1" #totalMarks="ngModel" required />
+						</div> -->
+						<div class="form-group">
+							<label>Total Marks<span class="error-dangercls">*</span></label>
+							<input type="number" class="form-control" placeholder="Total Marks"  [(ngModel)]="detailsTestForm.maxmarks" name="maxmarks" min="1" #maxmarks="ngModel" required [disabled]="resId != null"/>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6">
+						<div class="form-group">
+							<label>Start Date<span class="error-dangercls">*</span></label>
+							<my-date-picker name="modelS" [(options)]="myDatePickerOptions"
+							[(ngModel)]="modelS" placeholder="Start Date" (dateChanged)="onStartDateChanged($event)" [locale]="locale" required >
+							</my-date-picker>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6 ">
+						<div class="form-group">
+							<label>Start Time<span class="error-dangercls">*</span></label>
+							<timepicker [(ngModel)]="detailsTestForm.startTime" [showSeconds]="showSec" [showMeridian]="ismeridian" name="startTime" required></timepicker>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6">
+						<div class="form-group">
+							<label>End Date<span class="error-dangercls">*</span></label>
+							<my-date-picker name="modelE" [(options)]="myDatePickerOptions"
+							[(ngModel)]="modelE" placeholder="End Date" (dateChanged)="onEndDateChanged($event)" [locale]="locale" required>
+							</my-date-picker>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6">
+						<div class="form-group">
+							<label>End Time<span class="error-dangercls">*</span></label>
+							<timepicker [(ngModel)]="detailsTestForm.endTime" [showSeconds]="showSec" [showMeridian]="ismeridian" name="endTime" required></timepicker>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6">
+						<div class="form-group">
+							<label>Appear Date<span class="error-dangercls">*</span></label>
+							<my-date-picker name="modelA" [(options)]="myDatePickerOptions"
+							[(ngModel)]="modelA" placeholder="Appear Date" (dateChanged)="onAppearDateChanged($event)" [locale]="locale" required>
+							</my-date-picker>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6">
+						<div class="form-group">
+							<label>Appear Time<span class="error-dangercls">*</span></label>
+							<timepicker [(ngModel)]="detailsTestForm.appearTime" [showSeconds]="showSec" [showMeridian]="ismeridian" name="appearTime" required></timepicker>
+						</div>
+					</div>
+					<!-- <div class="col-lg-3 col-md-3 col-sm-6 top_mrgn_input">
+						<div class="form-group">
+							<label>Maximum Marks*</label>
+							<input type="number" class="form-control" placeholder="Maximum Marks"  [(ngModel)]="detailsTestForm.maxmarks" name="maxmarks" min="1" #maxmarks="ngModel" required />
+						</div>
+					</div> -->
+					<div class="col-lg-3 col-md-3 col-sm-6 top_mrgn_input">
+						<div class="form-group">
+							<label>Minimum Marks<span class="error-dangercls">*</span></label>
+							<input type="number" class="form-control" placeholder="Minimum Marks"  [(ngModel)]="detailsTestForm.minmarks" name="minmarks" min="1" #minmarks="ngModel" required [disabled]="resId != null"/>
+						</div>
+					</div>	
+					<div class="col-lg-3 col-md-3 col-sm-6 testtype_select clear">
+						<div class="form-group">
+						<label>Course<span class="error-dangercls">*</span></label>
+							<select class="form-control" name="course" [(ngModel)]="detailsTestForm.course" (change)="onCourseChange(detailsTestForm.course)" #course="ngModel" required [disabled]="resId != null">
+								<option disabled >Select course</option>
+								<option *ngFor="let cor of allCourseList" [ngValue]="cor.cat_id" >{{cor.cm_name}}</option>
+							</select>
+						</div>
+					</div> 
+					<div class="col-lg-3 col-md-3 col-sm-6 testtype_select">
+						<div class="form-group">
+							<label>Test Type<span class="error-dangercls">*</span></label>
+							<select class="form-control" name="type" [(ngModel)]="detailsTestForm.type" #type="ngModel" required [disabled]="resId != null" >
+								<option value="" selected>Select Test</option>
+								<option Value="0" selected="detailsTestForm.type == 0">Practice Test</option>
+								<option Value="1" selected="detailsTestForm.type == 1">Speed Test</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 clear">
+						<table class="table table-bordered negative_mrks_tbl" *ngIf="!showDynamicSub">
+							<tr>
+								<th>Subjects</th>
+								<th>Total Questions</th>
+								<th>Total Marks</th>
+								<th>
+									<input type="checkbox" [(ngModel)]="detailsTestForm.negMarks" name="negMarks" (change)="enableNegativeMarking(detailsTestForm.negMarks)" /> &nbsp; Negative Marks
+								</th>
+							</tr>
+							<tr *ngFor="let subject of selectSub;let i= index"> 
+								<td>
+									<label>{{subject.sub_name}} </label>
+								</td>
+								<td>
+									<input  type="number" name="totalQ_{{subject.smid}}" [(ngModel)]="subject['totalQues']"  placeholder="Per Subject question" min="0" />
+								</td>
+								<td>
+									<input  type="number" name="totalM_{{subject.smid}}" [(ngModel)]="subject['totalMarks']"  placeholder="Per Subject marks" min="0" />
+								</td>
+								<td>
+									<span *ngIf="show"><input type="number" name="negM_{{subject.smid}}" [(ngModel)]="subject['negMarks']" placeholder="Negative marking" min="0" /></span>
+								</td>
+							</tr>
+						</table>
+						<table class="table table-bordered negative_mrks_tbl" *ngIf="showDynamicSub">
+							<tr>
+								<th>Subjects</th>
+								<th>Total Questions</th>
+								<th>Total Marks</th>
+								<th>
+									<input type="checkbox" [(ngModel)]="detailsTestForm.negMarks" name="negMarks" (change)="enableNegativeMarking(detailsTestForm.negMarks)" [disabled]="resId != null" /> &nbsp; Negative Marks 
+								</th>
+							</tr>
+							<tr *ngFor="let subject of selectSub;let i= index" > 
+								<td>
+									<label>{{subject.sub_name}} </label>
+								</td>
+								<td>
+									<input  type="number" name="totalQ_{{subject.smid}}" [(ngModel)]="subject['totalQues']" placeholder="Per Subject question" [disabled]="resId != null" min="0"/>
+								</td>
+								<td>
+									<input  type="number" name="totalM_{{subject.smid}}" [(ngModel)]="subject['totalMarks']" placeholder="Per Subject marks" [disabled]="resId != null" min="0"/>
+								</td>
+								<td>
+									<span><input type="number" name="negM_{{subject.smid}}" [(ngModel)]="subject['negMarks']" placeholder="Negative marking" *ngIf="show" [disabled]="resId != null" min="0"/></span>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<div class="form-group">
+							<button type="button" class="btn btn-primary btn-light_blue" data-toggle="collapse" data-target="#instrucionCall" [disabled]="resId != null">Add Instruction</button>
+						</div>
+						<div id="instrucionCall" class="collapse">
+							<!-- <ckeditor [(ngModel)]="detailsTestForm.instructions" [config]="{uiColor: '#Abc000', height :'100px',autoParagraph : false
+								}" debounce="500" name="instructions">
+							</ckeditor> -->
+							<textarea rows="4" cols="50" [(ngModel)]="detailsTestForm.instructions" type="text" name="instructions"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 footer-btn" style="text-align: center;">
+					<button class="submit btn btn-primary btn-light_green" value="Submit" type="submit" (click)="getDetails(detailsTestForm1.value)" *ngIf="!showEdit">Save</button>
+					<button class="submit btn btn-danger Danger_btn" type="button" *ngIf="!showEdit" [routerLink] = "['/admin/testList']">Cancel</button>
+				</div>
+				<div class="col-sm-12 footer-btn" style="text-align: center;" *ngIf="showEdit">
+					<button class="btn btn-primary btn-light_blue" type="button" (click)="gotoAddQues()" [disabled]="resId != null">Set Question</button>
+					<button class="btn btn-primary btn-light_green" type="submit" value="Submit" (click)=" updateTest(detailsTestForm)">Update</button>
+					<button class="btn btn-danger Danger_btn" type="button" [routerLink] = "['/admin/testList']" (click) = "clearTestId();">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

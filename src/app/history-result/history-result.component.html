@@ -1,0 +1,62 @@
+<div class=" mainCls">
+    <div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading" *ngIf="loginUser[0]?.usr_type != 1"><ol class="breadcrumb" >
+					  <li *ngIf="previousUrl=='/test/history'"><a [routerLink] = "['/test/history']">History</a></li>
+					   <li *ngIf="previousUrl=='/Dashboard'"><a [routerLink] = "['/Dashboard']">Dashboard</a></li>
+					  <li *ngIf="loginUser?.usr_type != 1"><a>Result</a></li>					  
+					</ol>
+				</div>
+				<div class="panel-heading" *ngIf="loginUser[0]?.usr_type == 1">
+				<ol class="breadcrumb">
+				  <li><a [routerLink]="['/admin/dashbord']">Dashboard</a></li>
+				  <li><a [routerLink]="['/admin/student']">Student</a></li>
+				  <li><a [routerLink]="['/test/history']">Online Test History Of Student</a></li>
+				  <li class="active">Result</li>
+				</ol>
+			</div>
+			<div class="panel-body">
+			<label class="pull-left Testname">Test Name : <span *ngIf="resultCount == 1">{{resut?.test_name}}</span></label>
+			<div *ngIf="resultCount==1">
+				<div  class="col-md-4 pull-right result_show_cls" *ngIf="resut?.res_marks_abtain >= resut?.test_min_marks">
+					<!-- <h4 > Result :-</h4> -->
+					<h4 class=" result_mrks text-center"><span >Congratulation !!!</span> <span *ngIf="studentDetails == null">You got</span><span *ngIf="studentDetails != null">{{studentDetails.stu_fname}} {{ studentDetails.stu_lname}} got</span> <b>{{resut?.res_marks_abtain}}</b> marks out of 
+			     		<b>{{resut?.test_max_marks}}</b></h4>
+				  </div>
+				 <div  class="col-md-4 pull-right result_fail_show_cls" *ngIf="resut?.res_marks_abtain < resut?.test_min_marks" >
+					<!-- <h4 > Result :-</h4> -->
+					<h4 class=" result_mrks text-center"><span >Failed !!!</span> <span *ngIf="studentDetails == null">You got</span><span *ngIf="studentDetails != null">{{studentDetails.stu_fname}} {{ studentDetails.stu_lname}} got</span> <b>{{resut?.res_marks_abtain}}</b> marks out of 
+			     		<b>{{resut?.test_max_marks}}</b></h4>
+				  </div> 
+			</div>
+				<table class="table table-hover">
+	    	      <thead>
+			        <tr>
+			          <th>Subject Name</th>
+			          <th class="sub_text text-center">Total Questions</th>
+			          <th class="sub_text text-center">Total marks</th>
+			          <th class="sub_text text-center">Total Attempt</th>
+			          <th class="sub_text text-center">Correct Answer</th>
+			          <!-- <th>Link to Report</th> -->
+			        </tr>
+			      </thead>
+			      <tbody *ngIf="resultCount==1">
+			        <tr *ngFor="let details of resut?.subject" >
+			          <td>{{details.sub_name}}</td>
+			          <td class="sub_text text-center">{{details.tsmm_total_questions}}</td>
+			          <td class="sub_text text-center">{{details.tsmm_total_marks}}</td>
+			          <td class="sub_text text-center">{{details.attemptQues}}</td>
+			          <td class="sub_text text-center">{{details.rightAns}}</td>
+			        </tr> 
+			        
+			      </tbody>
+			      <tbody>
+			      	<tr *ngIf="resultCount == 0">No result found</tr>
+			      </tbody>
+			    </table>			     
+				  
+				  
+		  	</div>
+		</div>
+	</div>
+</div>

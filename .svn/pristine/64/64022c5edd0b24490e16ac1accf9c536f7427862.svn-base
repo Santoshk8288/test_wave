@@ -1,0 +1,31 @@
+<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-4 Change-Pswd-wrapper">
+	<div class="box">
+		<h2>Change Password</h2>
+		<form #regForm="ngForm"    [formGroup]="regUser" (ngSubmit)="regForm.valid && changePassword()" novalidate>
+			<div class="form-group">
+				<label for="currentPassword">Current Password <span class="error-dangercls">*</span></label>
+				<input type="password" class="form-control" placeholder="Current Password"   formControlName="currentPassword">
+				<span style="color : red"*ngIf="regUser.get('currentPassword').hasError('required') && regUser.get('currentPassword').touched" >Current Password is required .</span>
+                <span *ngIf="regUser.get('currentPassword').status == 'VALID'&& regUser.get('currentPassword').untouched" > </span>
+			</div>
+			<div class="form-group">
+				<label for="newPassword">New Password <span class="error-dangercls">*</span></label>
+				<input type="password" class="form-control" placeholder="New Password"   formControlName="newPassword">
+				<span style="color : red"*ngIf="regUser.get('newPassword').hasError('required') && regUser.get('newPassword').touched" >New Password is required .</span>
+				<span style="color : red" *ngIf="!regUser.get('newPassword').hasError('required')&& regUser.get('newPassword').hasError('validatePass')&& regUser.get('newPassword').touched" >Password must contain 6 characters, with a combination of letter, numbers and special characters.</span>
+				<span *ngIf="regUser.get('newPassword').status == 'VALID'&& regUser.get('newPassword').untouched" ></span>
+			</div>
+			<div class="form-group" >
+				<label for="confirmPassword">Confirm Password <span class="error-dangercls">*</span></label>
+				<input type="password" class="form-control"  placeholder="Confirm password"  formControlName="confirmPassword">
+				<span style="color : red"*ngIf="regUser.get('confirmPassword').hasError('required') && regUser.get('confirmPassword').touched" >Confirm password is required .</span>
+                <span style="color : red" *ngIf="!regUser.get('confirmPassword').hasError('required') && (regUser.get('confirmPassword').status == 'INVALID')&& regUser.get('confirmPassword').touched" > Confirm password is not matched.</span>
+                <span *ngIf="regUser.get('confirmPassword').status == 'VALID'&& regUser.get('confirmPassword').untouched" ></span>
+			</div>
+			<div class="">
+				<button [disabled]="regForm.invalid" class="btn btn-primary submit_btn">Change Password</button>
+				<button (click)="goBack()" class="btn  btn-danger Danger_btn">Cancel</button>
+			</div>
+		</form>
+	</div>
+</div>

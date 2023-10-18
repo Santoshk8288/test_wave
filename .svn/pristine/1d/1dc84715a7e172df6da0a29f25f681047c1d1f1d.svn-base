@@ -1,0 +1,46 @@
+[
+	{ 	"Subject": "English or Hindi",
+		"queNum": 50,
+		"answered": 10,
+		"Notans": 10,
+		"review": 10,
+		"visited": 10,
+		"currect": 10
+	},
+ 	{ 	
+ 		"Subject": "Maths",
+		"queNum": 50,
+		"answered": 10,
+		"Notans": 10,
+		"review": 10,
+		"visited": 10,
+		"currect": 10
+	},
+	{ 
+		"Subject": "General Awarnes",
+		"queNum": 50,
+		"answered": 10,
+		"Notans": 10,
+		"review": 10,
+		"visited": 10,
+		"currect": 10
+	},
+ 	{ 	
+ 		"Subject": "Computer Knowledge",
+		"queNum": 50,
+		"answered": 10,
+		"Notans": 10,
+		"review": 10,
+		"visited": 10,
+		"currect": 10
+	},
+	{ 
+		"Subject": "Total",
+		"queNum": 200,
+		"answered": 10,
+		"Notans": 10,
+		"review": 10,
+		"visited": 10,
+		"currect": 10
+	}
+]

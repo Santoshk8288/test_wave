@@ -1,0 +1,22 @@
+
+.feedback-page{
+	.panel{
+	margin:3% 15px;
+	}
+	.feedbackForm{
+		padding: 0px 30px;
+		.commanSpaceDiv{
+			margin-top: 0px;
+			padding-left: 20px;
+			textarea{
+				width:500px;
+				resize: none;
+				margin-top: 7px;
+			}
+		}
+		input[type=checkbox], input[type=radio] {
+			margin: 6px 4px;
+		}
+		
+	}
+}

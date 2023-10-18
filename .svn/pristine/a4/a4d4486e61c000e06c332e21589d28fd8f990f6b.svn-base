@@ -1,0 +1,82 @@
+/*----btn color------*/
+$white:#fff;
+$red:#d5300e;
+$green:#58a61b;
+$dark_green:#35690e;
+$purple:#704dab;
+$dark_blue:#35497b;
+$light_blue:#83beff;
+
+.Change-Pswd-wrapper {	
+	margin-top: 6%;
+	.box {
+	  margin: 0 auto;
+	  padding: 30px 40px;;
+	  float: none;
+	  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+	  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+	  -ms-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+	  -o-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+	  box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+	  background: #fff;
+	  -webkit-border-radius: 0px;
+	  -moz-border-radius: 0px;
+	  -ms-border-radius: 0px;
+	  -o-border-radius: 0px;
+	  border-radius: 0;
+	  width:100%;
+	  margin-left: 0;
+	  display:inline-block;
+		h2{
+			margin-top: 10px;
+			margin-bottom: 25px;
+		}
+		.submit_btn{
+			border-radius: 0;
+			color: #fff;
+			background-color: $green;
+			border-color: $green;
+			font-weight: 600;
+			letter-spacing: 0.5px;	
+			width: 49%;
+			height: 40px;
+		}
+		.submit_btn:hover{ 
+			background:$dark_green;
+			color:$white;		
+		}
+		.back_btn{
+			border-radius: 0;
+			color: $white;
+			background-color: $dark_blue;
+			border-color: $dark_blue;
+			font-weight: 600;
+			letter-spacing: 0.5px;	
+			width: 49%;
+			height: 40px;
+		}
+		.back_btn:hover{ 
+			background:$light_blue;
+			color:$dark_blue;		
+		}
+		.form-group{
+		    margin-bottom: 30px;
+			input{
+				height: 40px;
+				border-radius: 0;
+				border: none;
+				box-shadow: unset;
+				border-bottom: 1px solid;
+			}
+			label {
+				letter-spacing: 0.5px;
+				font-weight:500;
+			}
+		}
+		@media (max-width: 1280px){
+			.btn-primary{
+				margin-bottom:0;
+			}
+		}
+	}
+}

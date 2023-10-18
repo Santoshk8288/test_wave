@@ -1,0 +1,86 @@
+<div class="col-md-5 col-md-offset-4 col-sm-8 col-sm-offset-2 login-wrapper ">
+	<div class="box">
+		<h2 class="text-center">{{gestCheck == false ? gestRegister == false ? 'Login' : 'Institute Name' : 'Login with coupon'}} </h2>
+		<!-- <h2 class="text-center" *ngIf="!gestCheck && !gestRegister">Gest User</h2> -->
+		<form name="form" *ngIf="!gestCheck && !gestRegister" (ngSubmit)="loginForm.form.valid && login()" #loginForm="ngForm" novalidate>
+			<div class="form-group" [ngClass]="{ 'has-error': loginForm.submitted && !username.valid }">
+				<label for="username">Username<span class="error-dangercls">*</span></label>
+				<input type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+				<div *ngIf="loginForm.submitted && !username.valid" class="help-block">Username is required</div>
+			</div>
+			<div class="form-group" [ngClass]="{ 'has-error': loginForm.submitted && !password.valid }">
+				<label for="password">Password<span class="error-dangercls">*</span></label>
+				<input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+				<div *ngIf="loginForm.submitted && !password.valid" class="help-block">Password is required</div>
+				<a  [routerLink]="['/Forgotpassword']" class="btn btn-link pull-right forgot_pswd_btn">Forgot Password</a>
+			</div>
+			<div class="form-group text-center">
+				<button [disabled]="loading" class="btn btn-primary login_btn">Login</button>		
+			</div>
+			<div class="division"> 
+				<hr class="left">
+				<span>or</span> 
+				<hr class="right"> 
+			</div>
+			<div class="text-center">	
+				<p class="sign_in_p_txt">I want to</p>
+				<a (click)="gestWindow()" class="btn btn-link change_psd">Login with Coupon</a> 
+			</div> 
+		</form>
+		<!-- coupon code -->
+		<form name="form" *ngIf="gestCheck" (ngSubmit)="gestcouponForm.form.valid && checkCoupon()" #gestcouponForm="ngForm" novalidate>
+
+			<div class="form-group" [ngClass]="{ 'has-error': gestcouponForm.submitted && !coupon.valid }">
+				<label for="coupon">Coupon</label>
+				<input type="text" class="form-control" placeholder="Coupon" name="coupon" [(ngModel)]="model.verifyCoupon" #coupon="ngModel" required />
+				<div *ngIf="gestcouponForm.submitted && !coupon.valid" class="help-block">Coupon is required</div>
+			</div>
+			<div class="form-group text-center">
+				<button [disabled]="loading" class="btn btn-primary login_btn" >Next</button>	
+			</div>
+			<div class="division"> 
+				<hr class="left">
+				<span>or</span> 
+				<hr class="right"> 
+			</div>
+			<div class="text-center">	
+				<p class="sign_in_p_txt">I want to</p>
+				<a (click)="gestToLogin()" class="btn btn-link change_psd">Login</a> 
+			</div> 
+		</form>
+		<!-- gest user code -->
+		<form name="form" *ngIf="gestRegister" (ngSubmit)="gestloginForm.form.valid && gestLogin()" #gestloginForm="ngForm" novalidate>
+
+			<div class="form-group" [ngClass]="{ 'has-error': gestloginForm.submitted && !gestName.valid }">
+				<label for="gestName">Full Name</label>
+				<input type="text" class="form-control" placeholder="Full Name" name="gestName" [(ngModel)]="couponDetail.gest_name" #gestName="ngModel" [readonly]="gestUserRegisterd" required />
+				<div *ngIf="gestloginForm.submitted && !gestName.valid" class="help-block">Full Name is required</div>
+			</div>
+
+			<div class="form-group" [ngClass]="{ 'has-error': gestloginForm.submitted && !gestEmail.valid }">
+				<label for="email">Email</label>
+				<input type="Email" class="form-control" placeholder="Email" name="gestEmail" [(ngModel)]="couponDetail.gest_email" #gestEmail="ngModel" [readonly]="gestUserRegisterd" required />
+				<div *ngIf="gestloginForm.submitted && !gestEmail.valid" class="help-block">Email is required</div>
+			</div>
+
+			<div class="form-group text-center">
+				<button [disabled]="loading" class="btn btn-primary login_btn" >Gest Login</button>	
+			</div>
+			<div class="division"> 
+				<hr class="left">
+				<span>or</span> 
+				<hr class="right"> 
+			</div>
+			<div class="text-center">	
+				<p class="sign_in_p_txt">I want to</p>
+				<a (click)="gestToLogin()" class="btn btn-link change_psd">Login</a> 
+			</div> 
+		</form>
+	</div>
+	<div class="ryt_img text-center">
+		<h2>TestWave</h2>
+		<p class="sign_up_p_txt">Sign up and discover great amount of new opportunities!</p>
+		<a [routerLink]="['/institute']" class="btn btn-link sign_up_a_txt">Sign Up</a>
+	</div>
+</div>
+

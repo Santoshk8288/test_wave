@@ -1,0 +1,139 @@
+
+ <div class="col-lg-12   sign-up-wrapper">
+	<div class="box">
+		<h2 class="text-center">My Profile</h2>
+		<form #regForm="ngForm" [formGroup]="regUser" (ngSubmit)="regForm.valid"   novalidate>		
+			<div class="form-group">
+				<div class="leftContent">
+					<div class="profileImg text-center" >  
+							 <img [src]="myProfileViewObj.displayImage ? myProfileViewObj.displayImage :'assets/img/signup.jpg'"  />
+						<div class="">
+		  					<input type="file" (change)="fileChange($event)" accept="image/*">		
+						</div>
+					</div>
+				</div>
+			</div>
+		<div class="col-lg-6">
+			<div class="form-group" >
+				<label for="fname">Institute Name<span class="error-dangercls">*</span></label>
+				<input type="text" class="form-control"  placeholder="Name" formControlName="fname" required maxlength="30"/>
+				<span style="color : red" *ngIf="regUser.get('fname').hasError('required') && regUser.get('fname').touched  " >
+               Institute name required .
+                </span>
+            	<span style="color : red" *ngIf="!regUser.get('fname').hasError('required')&& !regUser.get('fname').hasError('validateInstituteName') && regUser.get('fname').hasError('maxlength') && regUser.get('fname').untouched" > Institute name maximum length 50 . 
+                </span>
+                <span *ngIf="regUser.get('fname').status == 'VALID'&& regUser.get('fname').untouched" > 
+                </span>
+			</div>
+			<div class="form-group" >
+				<label for="email">Email<span class="error-dangercls">*</span></label>
+				<input type="text" class="form-control" placeholder="Email" formControlName="email" required />
+				<span style="color : red" *ngIf="regUser.get('email').hasError('required') && regUser.get('email').touched" >
+                Email is required. 
+                </span>
+                <span style="color : red" *ngIf="!regUser.get('email').hasError('required') && (regUser.get('email').status == 'INVALID')&& regUser.get('email').touched" >Email is invalid .
+                </span>
+                <span *ngIf="regUser.get('email').status == 'VALID'&& regUser.get('email').untouched" > 
+                </span>
+			</div>
+			<div class="form-group" >
+				<label for="lastName">Contact Number<span class="error-dangercls">*</span></label>
+				<input type="tel" class="form-control"  placeholder="Contact Number" formControlName="contactno"  minlength="10" required maxlength="15"/>
+				<span style="color : red" *ngIf="regUser.get('contactno').hasError('required') && regUser.get('contactno').touched" >
+               Contact number is required . 
+                </span>
+				<span style="color : red" *ngIf="!regUser.get('contactno').hasError('required') && (regUser.get('contactno').status == 'INVALID')&& regUser.get('contactno').touched" >  Contact number must be 10 digits. 
+                </span>
+               
+                <span *ngIf="regUser.get('contactno').status == 'VALID'&& regUser.get('contactno').untouched" > 
+                </span>
+			</div>	
+			<div class="form-group" >
+				<label for="lastName">Registration Number</label>
+				<input type="text" class="form-control" formControlName="registration"  placeholder="Registration Number"   />
+				<span style="color : red" *ngIf="regUser.get('registration').hasError('required') && regUser.get('registration').touched" >
+               Registration number is required . 
+                </span>
+                <span *ngIf="regUser.get('registration').status == 'VALID'&& regUser.get('registration').untouched" > 
+                </span>
+		</div>
+	</div>
+		<div class="col-lg-6">
+				
+			<div class="form-group" >
+				<label for="country">Country<span class="error-dangercls">*</span></label>
+				<select  class="form-control" formControlName="country" (change)="onCountryChange(regUser.get('country').value)"
+				required  >
+				  <option *ngFor="let country of countries;let i = index;" [ngValue]="country.id"   > {{ country.name}}</option>
+				</select>
+				<span style="color : red" *ngIf="regUser.get('country').hasError('required') && regUser.get('country').touched" >
+               Country is required . 
+                </span>
+                
+                <span *ngIf="regUser.get('country').status == 'VALID'&& regUser.get('country').untouched" > 
+                </span>
+			</div>
+			<div class="form-group" >
+				<label for="state">State<span class="error-dangercls">*</span></label>
+				<select class="form-control" formControlName="state"  required>
+				  
+				  <option *ngFor="let state of filteredArry ;let i = index;" [ngValue]="state.id" >{{ state.name }}</option>
+				</select>
+				<span style="color : red" *ngIf="regUser.get('state').hasError('required') && regUser.get('state').touched" >
+               State is required . 
+                </span>
+                
+               <span *ngIf="regUser.get('state').status == 'VALID'&& regUser.get('state').untouched" > 
+                </span>
+			</div>
+			<div class="form-group" >
+				<label for="password">City<span class="error-dangercls">*</span></label>
+				<input type="text" class="form-control" formControlName="city"  placeholder="City" required />
+				<span style="color : red" *ngIf="regUser.get('city').hasError('required') && regUser.get('city').touched" >
+               City is required . 
+                </span>
+                <span *ngIf="regUser.get('city').status == 'VALID'&& regUser.get('city').untouched" > 
+                </span>
+			</div>
+			<div class="form-group">
+				<label for="password">Zipcode<span class="error-dangercls">*</span></label>
+				<input type="number" class="form-control"  placeholder="Zipcode" formControlName="zipcode" required minlength="6"/>
+				<span style="color : red" *ngIf="regUser.get('zipcode').hasError('required') && regUser.get('zipcode').touched" >
+               Zipcode is required . 
+                </span>
+                <span style="color : red" *ngIf="!regUser.get('zipcode').hasError('required')&& (regUser.get('zipcode').status == 'INVALID')&& regUser.get('zipcode').untouched" > Zipcode must be 6 digits . 
+                </span>
+                
+                <span *ngIf="regUser.get('zipcode').status == 'VALID'&& regUser.get('zipcode').untouched" > 
+                </span>
+			</div>	
+		</div>
+		<div class="col-lg-12">
+		<div class="form-group" >
+				<label for="lastName">Institute Website</label>
+				<input type="txt" class="form-control"   placeholder="Institute Website" formControlName="website"  />
+				<span style="color : red" *ngIf="regUser.get('website').hasError('required') && regUser.get('website').touched" >
+               Institute website is required . 
+                </span>
+                <span style="color : red" *ngIf="!regUser.get('website').hasError('required')&&(regUser.get('website').status == 'INVALID')&& regUser.get('website').touched" >Institute website is invalid
+	            </span>
+                <span *ngIf="regUser.get('website').status == 'VALID'&& regUser.get('website').untouched" > 
+                </span>
+			</div>
+			<div class="form-group" >
+				<label for="password">Address<span class="error-dangercls">*</span></label>
+				<textarea rows="4" cols="50" class="form-control"  placeholder="Address" formControlName="address" required></textarea>
+				<span style="color : red" *ngIf="regUser.get('address').hasError('required') && regUser.get('address').touched" >
+               Address is required . 
+                </span>
+                <span *ngIf="regUser.get('address').status == 'VALID'&& regUser.get('address').untouched" > 
+                </span>
+			</div>
+			</div>
+			<div class="form-group">
+				<button type="submit" [disabled]="regUser.invalid" class="btn btn-primary Reg_btn" (click)=" updateInstitute(regUser.value)">Update</button>
+				<a (click)="goBack()" class="btn  btn-danger Danger_btn	">Cancel</a>
+			</div>
+		</form>	
+	</div>
+</div>

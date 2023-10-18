@@ -1,0 +1,57 @@
+<div class="result-page ">
+	<div class="commanHeader">
+        <span>{{loginUser[0].ins_name}}</span> 
+    </div>
+	<div class="text-center resultHeading">
+		<span>Summary Of Sections(S) Answered</span>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">Result</div>
+		<div class="panel-body">
+			<label class="pull-left Testname">Test Name : <span>{{testDetails?.test_name}}</span></label>
+			<div *ngIf="users != 0">
+				<div  class="col-md-4 pull-right result_show_cls" *ngIf="users?.res_marks_abtain >= users?.test_min_marks" >
+						<!-- <h4 > Result :-</h4> -->
+						<h4 class=" result_mrks text-center"><span>Congratulation !!!</span>  You got <b>{{users?.res_marks_abtain}}</b> marks out of 
+				     		<b>{{users?.test_max_marks}}</b></h4>
+				</div>
+				<div  class="col-md-4 pull-right result_fail_show_cls" *ngIf="users?.res_marks_abtain < users?.test_min_marks" >
+						<!-- <h4 > Result :-</h4> -->
+						<h4 class=" result_mrks text-center"><span >Failed !!!</span> You got <b>{{users?.res_marks_abtain}}</b> marks out of 
+				     		<b>{{users?.test_max_marks}}</b></h4>
+				  </div> 
+			</div>
+			<div  *ngIf="resultNotAvale">No Result</div>
+			<table class="table table-hover" *ngIf="users != 0">
+				<thead>
+					<tr>
+						<th class="text-left">Section Name</th>
+						<th class="sub_text text-center">No. of Questions</th>
+						<th class="sub_text text-center">Attempt</th>
+						<th class="sub_text text-center">Correct Answer</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr *ngFor="let usr of users?.subject" >
+						<td>{{usr.sub_name}}</td>
+						<td class="sub_text text-center">{{usr.tsmm_total_questions}}</td>
+						<td class="sub_text text-center">{{usr.attemptQues}}</td>
+						<td class="sub_text text-center">{{usr.rightAns}}</td>
+					</tr> 
+				</tbody>
+			</table>
+		<!-- 	<table class="table table-hover" *ngIf="users != 0">
+			     	<tr bgcolor="#f5f5f5">
+			     		<td>Result   </td>
+			     		<td class="sub_text text-center"> {{users?.res_marks_abtain}}</td>
+			     		<td class="sub_text text-center">{{users?.test_max_marks}}	</td>
+			     	</tr>
+			      </table> -->
+			<p *ngIf="users == 0" align="center">No result found.</p> 
+		</div>
+  	</div>
+  	<div class="text-center bottomText">
+  		<span>Have a nice time!</span><br>
+  		<a class="btn btn-primary btn-light_blue" (click)="home()">Go to {{loginUser[0].ins_name}}'s Student Portal</a>
+  	</div>
+</div>

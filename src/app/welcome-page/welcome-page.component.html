@@ -1,0 +1,220 @@
+<label><b>Welcome in TastWave</b></label>
+<a [routerLink]="['/Login']">Login</a>
+<body id="wrapper" data-spy="scroll">
+	<header>
+		<div class="container-fluid">
+			<!-- Second navbar for categories -->
+			<nav id="header" class="navbar navbar-fixed-top navbar-default">
+				<div id="header-container"  class="clearfix">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a id="brand" class="navbar-brand" href="#wrapper"><img src="testwave/../assets/img/Logo.png" class="img-responsive"></a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse nav_scroll" id="navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right welcomepage-navbar">
+							<li><a class="page-scroll active" href="#wrapper">Home</a></li>
+							<li><a class="page-scroll" href="#overview">Overview</a></li>
+							<li><a class="page-scroll" href="#features">Features</a></li>
+							<li><a class="page-scroll" href="#contact">Contact Us</a></li> 
+							<li><a [routerLink]="['/institute']" class="btn btn-success btn-circle btn-signup"> <i class="icon-user-plus" aria-hidden="true"></i>&nbsp; Sign up</a></li>   
+							<li><a class="btn btn-info btn-circle" [routerLink]="['/Login']"><i class="icon-lock" aria-hidden="true"></i>&nbsp; Login</a> </li>
+						</ul>          
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container -->
+			</nav><!-- /.navbar -->
+		</div><!-- end of container-fluid -->
+	</header>
+
+	<!-- slider banner section start -->
+	<section class="sliderSection">
+		<div class="slider-bakground-image">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 sliderInner">
+						<h1 class="slider-text"> Do you want to conduct <span style="color:#FDFC44;">online tests</span> <br/> for your Institute?</h1> 
+						<h3 class="slider-text2">Here you are at the right place.</h3>
+						<a [routerLink]="['/institute']" > <div type="button" class="btn btn-default trial-custem-css btn-lg"> Trial for free </div> </a>
+						<p class="slider-text-unlimited">Unlimited 30-Days Trial Period</p>
+					</div>
+				</div>
+				<div class="leftImg">
+					<img src="assets/img/student_2.png" class="img-responsive"/>
+				</div>
+				<div class="rightImg">
+					<img src="assets/img/student.png" class="img-responsive"/>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- slider banner section end -->
+	<section id="about" class="revolutionary-text">
+		<div class="container-fluid"> <!--3rd containner fluid start -->
+			<div class="container"> <!--3rd containner start -->
+				<div class="row"><!--row start -->
+					<h1 class="wow fadeInDown" data-wow-duration="1s" data-wow-delay="1s">Create and conduct online tests</h1>
+					<p class="Aeneam">With TestWave you can easily create and conduct online test exams.We provide powerful text editor and editing tools to help you create tests, quizzes, surveys and exams as per your requirement.</p>
+				</div>  <!--row end -->  
+			</div> <!--3 rd containner end --> 
+		</div> <!--3rd containner fluid end -->
+	</section>
+	<section id="overview" class="fourthcnt-fluid">
+		<div class="container-fluid"> <!--4th containner fluid start -->
+			<div class="row"><!--row start -->
+				<div class="col-sm-5">
+					<div class="row cnt-margin-padding">
+						<div class="col-sm-3 screen_box1">
+							<img src="assets/img/Web_better.png" class="img-responsive"/>
+						</div>
+						<div class="col-sm-9">
+							<h4>Easy to Create</h4>
+							<p>Using our rich text editors and advance editing tools you can quickly create tests.This powerful feature enables you to easily create as many tests as you like.</p>
+						</div>
+					</div>
+					<div class="row cnt-margin-padding">
+						<div class="col-sm-3 screen_box2">
+							<img src="assets/img/Powerfull tool.png" class="img-responsive"/> 
+						</div>
+						<div class="col-sm-9">
+							<h4>Conduct online tests.</h4>
+							<p>TestWave allows not only to create test but also get you to conduct the test and collect the responses online.</p>
+						</div>
+					</div>  
+					<div class="row cnt-margin-padding">
+						<div class="col-sm-3 screen_box3">
+							<img src="assets/img/Experimental Stuff.png" class="img-responsive"/> 
+						</div>
+						<div class="col-sm-9">
+							<h4>In depth Reporting</h4>
+							<p>With interacting charts and graphs you are equipped to get the insightful reporting of all important data of test/exam/students in your organization.</p>
+						</div>
+					</div>  
+					<div class="row cnt-margin-padding">
+						<div class="col-sm-3 screen_box4">
+							<img src="assets/img/Clock.png" class="img-responsive"/> 
+						</div>
+						<div class="col-sm-9">
+							<h4>Customize Question paper</h4>
+							<p>Add your logo and brand the question paper to suit your organization name and theme,all easy here with the TestWave.</p>
+						</div>
+					</div>      
+			   </div><!-- end col-sm-6-->
+
+			   <div class="col-sm-7 second-cnt">
+					<h1>Features of TestWave</h1>
+					<img src="assets/img/editor.png" class="img-responsive"/>
+			   </div><!-- end col-sm-6-->
+			</div>  <!--row end -->  
+		</div> <!--4th containner fluid end -->
+	</section>
+
+	<section id="features" class="other-power-text">
+		<div class="container-fluid">
+			<h1>Other Power-Packed Features</h1>
+			<div class="container other-power-container">
+				<div class="row">
+					<div class="col-sm-6 col-md-6"> 
+						<div class="cnt-custem">     
+							<h3><img src="assets/img/test_series.png"/>&nbsp;
+							Create Your Own Test Series </h3>
+							<p>TestWave allows you to easily create your series of tests. Plan the tests and get them ready to conduct using this powerful test creating tool.</p>
+						</div> 
+						<br/> 
+						<div class="cnt-custem">  
+							<h3><img src="assets/img/speedtest.png"/>&nbsp;
+							Set Your Institute Question Paper </h3>
+							<p>Wanted your organization's logo and theme on question paper,TestWave does that for you as well.Just upload your logo and theme and we will prepare the test papers for you.</p>
+						</div>
+						<br/> 
+						<div class="cnt-custem">  
+							<h3><img src="assets/img/powerfull report.png"/>&nbsp;
+							Speed Test & Practice Test </h3>
+							<p>Based upon the requirement TestWave let's you create different type of tests e.g. Speed test,Quiz,Practice test etc.</p>
+						</div>
+						<br/>   
+						<div class="cnt-custem">    
+							<h3><img src="assets/img/student trim.png"/>&nbsp;
+							You Can Create Your New Courses</h3>
+							<p>Generate as many courses as you want and link them to particular test/test series under your own account.</p>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-6">
+						<div class="cnt-custem">  
+							<h3><img src="assets/img/question paper.png"/>&nbsp;
+							Powerful Reporting </h3>
+							<p>With interacting charts and graphs you are equipped to get the insightful reporting of all important data of test/exam/students in your organization.</p>
+						</div>
+						<br/> 
+						<div class="cnt-custem">  
+							<h3><img src="assets/img/New_course.png"/>&nbsp;
+							Schedule Your Exams/Tests</h3>
+							<p>You can schedule your exam and test timing through settings.</p>
+						</div>
+						<br/> 
+						<div class="cnt-custem">  
+							<h3><img src="assets/img/Shedule_exam.png"/>&nbsp;
+							Student Management Portal  </h3>
+							<p>Organise all your students records with TestWave. One place to get all the student related stored and accessible.</p>
+						</div>
+						<br/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--search content start -->
+	<section id="contact">
+		<div class="container-fluid search-fluid">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-md-6">
+						<p>Feel free to contact us</p>
+					</div>
+					<div class="col-sm-6 col-md-6 text-center">
+						<div class="col-sm-8">
+							<input class="search-css" type="text" name="" placeholder="Email..">
+						</div>
+						<div class="col-sm-4">
+							<button class="btn btn-success search-button">SUBSCRIBE </button>
+						</div>
+					</div>
+				</div>  
+			</div>
+		</div>
+	</section>
+	<!--search content end -->
+	<!--- footer start -->
+	<section>
+		<div class="container-fluid text-center footer-content">      
+			<div class="container">
+				<hr/>
+				<div class="row text-center">       
+					<ul class="nav_scroll">
+						<li><a class="page-scroll" href="#wrapper">Home</a></li>
+						<li><a class="page-scroll" href="#overview">Overview</a></li>
+						<li><a class="page-scroll" href="#features">Features</a></li>
+						<li><a class="page-scroll" href="#contact">Contact Us</a></li>  
+					</ul>
+				</div>
+				<br/>
+				<div class=" row text-center social-icon-footer ">
+					<a href=""><span style="color: #FFBD62 !important;"><i class="icon-twitter " aria-hidden="true"></i></span></a>
+					<a href=""><i class="icon-facebook" aria-hidden="true"></i></a>
+					<a href=""><i class="icon-google-plus" aria-hidden="true"></i></a>
+					<a href=""><i class="icon-linkedin2" aria-hidden="true"></i></a>
+				</div>
+			</div>
+			<div class="footer">
+				<p>Copyright 2018 &copy; <a style="color:#ffffff;" href="http://apliteinfo.com/">Aplite Info Solution Pvt. Ltd.</a> | All Rights Reserved</p>
+			</div>      
+		</div> 
+	</section>
+	<!--- footer end --> 
+</body>

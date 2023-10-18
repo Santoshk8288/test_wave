@@ -1,0 +1,136 @@
+<div class="container-fuild body_top_padding">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Test Series Detail</div>
+			<div class="panel-body">
+				<button class="btn btn-primary btn-light_blue" (click)="openModal(template)">Add</button>
+				 <div class="col-sm-3 search-box pull-right">
+				<div class="input-group">
+					  <input type="text" class="form-control" placeholder="Search " name="search" [(ngModel)]="search" (keyup.enter)="searchTestSeries(search)">
+						<span class="input-group-btn ">
+						<button class="btn btn-primary btn-light_blue" type="button" (click)="searchTestSeries(search)" >Search</button>
+						</span>
+					</div>
+				</div>
+				 <table class="table table-bordered table-hover">					
+					<thead>
+						<tr>
+							<th class="list_no" >#</th>
+							<th>Test Series</th>
+							<th class="icon_btn text-center">Edit / Delete</th>
+							<th class="icon_btn text-center">Coupon</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let test of testSeries;let i = index;">
+							<td class="list_no" >{{i+1}}</td>
+							<td (click)="goToSeriesTest(test)"><a >{{test.ser_name}}</a></td>
+							<!-- <td class="icon_btn" > <button type="button" class="btn btn-primary btn-light_green" (click)="openEditSeriesModel(i);openModal(templateEditSeries)" ><i class="icon-pencil" ></i></button></td> -->
+							<td class="text-center" ><button type="button" class="btn btn-primary btn-light_green" (click)="openEditSeriesModel(i);openModal(templateEditSeries)"><i class="icon-pencil" ></i></button> &nbsp; <button class="btn btn-danger Danger_btn" (click)="removeSeries(test)"><i class="icon-bin" ></i></button></td>
+							<td class="text-center"><button class="btn btn-primary btn-light_green" (click)="goToGenerateCoupon(test)"><i class="icon-credit-card"  aria-hidden="true" ></i></button></td>
+						</tr>							
+					</tbody>
+				</table>   
+				<div class="row"> 
+					<div class="col-xs-6 col-6" >
+					<label class="table_datashow"> Show <select name="endLimit" [(ngModel)]="listEndLimit" (change)="endLimitChange(listEndLimit)">
+							  	<option Value="10" selected ="listEndLimit == 10">10</option>
+							  	<option Value="20" selected ="listEndLimit == 20">20</option>
+							  	<option Value="50" selected="listEndLimit == 50">50</option>
+							  	<option Value="100" selected ="listEndLimit == 100">100</option>
+							  	<option Value="500" selected="listEndLimit == 500">500</option>
+							</select>
+							</label>
+						</div>
+					<div class="col-xs-6 col-6" style="text-align: right;">
+						<pagination [totalItems]="testSeriesTotalItems" [itemsPerPage]='itemPerPageLimit' [(ngModel)]="testSeriesCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="getTestSeries($event)" [boundaryLinks]="true"></pagination>
+				</div>
+			</div>
+			</div>
+			
+		</div>
+	</div>
+	<ng-template #template>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Series</h4>							  
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+				  <label class="control-label">Series Name</label>
+				  <input class="form-control" type="text" name="sname" [(ngModel)]="series.sname" placeholder="Enter Series" value=""/>
+				  <label class="control-label">Open Date</label>
+				  <input class="form-control" type="date" name="opendate" [(ngModel)]="series.opendate" placeholder="Enter Open date" value=""/>
+				  <label class="control-label">Close Date</label>
+				  <input class="form-control" type="date" name="closedate" [(ngModel)]="series.closedate" placeholder="Enter Close date" value=""/>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary btn-light_green pull-left" (click)="addSeries(series);">Save</button>
+				<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="series='';modalRef.hide()">Cancel</button>						
+			</div>
+		</div>
+	</ng-template>
+	<ng-template #templateView>
+		<div class="modal-header">
+			<h4 class="modal-title pull-left">Test Details</h4>
+			<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div>
+				<label>Series Name:{{seriesName}}</label> 
+				<button type="button">Edit</button>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>Test Name</th>
+						<th>Total Question</th>
+						<th>Test Duration</th>
+						<th>Max. Marks</th>
+						<th>Test OpenDate</th>
+						<th>Test CloseDate</th>
+						<th>Test AppearDate</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let test of testData">
+						<td>{{test.test_name}}</td>
+						<td>{{test.test_total_questions}}</td>
+						<td>{{test.test_duration}}</td>
+						<td>{{test.test_max_marks}}</td>
+						<td>{{test.test_opendate | date:'dd-MM-yyyy H:mm'}}</td>
+						<td>{{test.test_closedate | date:'dd-MM-yyyy H:mm'}}</td>
+						<td>{{test.test_appeardate | date:'dd-MM-yyyy H:mm'}}</td>
+						<td><button type="button">Delete</button></td>
+					</tr>
+				</tbody>
+			 </table>
+		</div>
+	</ng-template>
+	<ng-template #templateEditSeries>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Series</h4>							  
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+				  <!-- <input class="form-control" type="text" name="series" [(ngModel)]="series" placeholder="Enter Series" value=""/> -->
+				  <label class="control-label">Series name</label>
+				  <input class="form-control"  type="text" name="sname" [(ngModel)]="editSeriesDetail.sname" placeholder="Edit series"/>
+				  <label class="control-label">Open Date</label>
+				  <input class="form-control" type="date" name="opendate" [(ngModel)]="editSeriesDetail.opendate" placeholder="Enter Open date" />
+				  <label class="control-label">Close Date</label>
+				  <input class="form-control" type="date" name="closedate" [(ngModel)]="editSeriesDetail.closedate" placeholder="Enter Close date" />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary btn-light_green pull-left" (click)="editSeries(editSeriesDetail);">Update</button>
+				<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="editCancel();modalRef.hide()">Cancel</button>						
+			</div>
+		</div>
+	</ng-template>
+</div>

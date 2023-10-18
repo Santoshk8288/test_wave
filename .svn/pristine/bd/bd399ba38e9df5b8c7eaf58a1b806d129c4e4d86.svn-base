@@ -1,0 +1,373 @@
+.text_center {
+  text-align: center;
+}
+/*----btn color------*/
+$red:#d5300e;
+$green:#58a61b;
+$purple:#704dab;
+$dark_blue:#35497b;
+$light_blue:#83beff;
+
+
+
+.exam_page{
+	h1{
+		background: #3a5689;
+		color: white;
+		padding: 15px;
+		font-size: 28px;
+		margin-left: -15px;
+		margin-right: -15px;
+		margin-top:0;
+	}
+	h2{
+		margin-top: 10px;
+		margin-bottom: 5px;
+		text-align: center;
+		text-transform:uppercase;
+	}
+	.commanHeader{
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+}
+.exam_topic_fliter,.exam_paper_top,.exam_paper_footer {
+  border: 1px solid #181818;
+  padding-top: 10px;
+  padding-left: 0;
+	
+	.btn-dark_blue,.btn-light_blue {
+		border-radius: 0;
+		margin-left: 10px;
+		color: #fff;
+		background-color:$dark_blue;
+		border-color: $dark_blue;
+		margin-bottom: 10px;
+		font-weight: 600;
+		letter-spacing: 0.5px;
+	}
+	.btn-dark_blue:hover,.btn-dark_blue.active,.btn-light_blue{
+		background:$light_blue;
+		color: #161a23;
+	}
+	@media (max-width: 1024px){
+		.btn-dark_blue{
+			padding: 6px 10px;
+		}
+	}
+	  
+}
+.exam_paper_top{
+	padding-left:15px;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	margin-top:5px;
+	max-height: 530px;
+	height: 494px;
+	p{
+			img{
+				width:400px;
+			}
+		}
+	.pull-right{
+		li {
+			list-style: none;
+			display: inline;
+			margin-left: 15px;
+		}
+	}
+	hr {
+		border-top: 1px solid #181818;
+		margin-left: -15px;
+		margin-right: -15px;
+		clear: both;
+	}
+	.text_red,.text_green{
+		color:$red;
+		margin-left:5px;
+	}
+	.text_green{
+		color:$green;
+	}
+	.exam_paper_body{
+		clear: both;		
+	}
+	.exam_paper_ans{
+		padding-left: 0;		
+		padding-top: 10px;
+		.radio {
+			display: list-item;
+			margin-left: 15px;
+			list-style: lower-alpha;
+			label{
+				vertical-align:top;
+			}
+		}
+	}
+	
+	@media (max-width: 1366px){
+		.exam_paper_top{
+			height: 495px;
+		}
+	}	
+	
+	@media (max-width: 1280px){
+		.exam_paper_top{
+			height: 354px;
+		}
+	}
+	
+	
+}
+
+.exam_paper_footer{
+	border-top:unset;
+}
+
+.exam_que_paper{
+	padding-left: 0;
+    padding-top: 45px;	
+	.user_name{
+		text-transform: uppercase;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.exam_que_selection{
+		background:#d1e3ee;	
+		padding:10px;	
+		max-height: 700px;
+		height: 700px;
+	}
+	.exam_que_selection_btn {
+		max-height: 480px;
+		height: 500px;
+		overflow-x: hidden;
+	}
+	.btn-default {
+		color: #333;
+		background: #f4f4f4;
+		border-color: #ccc;
+		width: 35px;
+		text-align: center;
+		margin: 4px 6px;
+		padding: 5px;
+		margin-left: 0;
+		box-shadow: 0px 2px 3px #bcd0dd;
+	}
+	ul{
+		padding-left:0
+	}
+	li {
+		list-style: none;
+		display: inline-block;
+		width: 49%;
+		padding: 6px 0;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	li:last-child{
+		width:100%;
+	}
+	.lege{
+		margin: 10px 0 0;
+	}
+	.tag,.tag-1,.tag-2,.tag-3,.tag-4{
+	    width: 25px;
+		height: 20px;
+		background: $green;
+		display: inline-block;
+		border-top-left-radius: 9px;
+		border-top-right-radius: 9px;
+		margin-right:10px;
+		vertical-align: top;
+	}	
+	.tag-1{
+		background:$red;
+		    border-radius: 0;
+		border-bottom-left-radius: 9px;
+		border-bottom-right-radius: 9px;
+	}
+	.tag-2{
+		background: $purple ;
+		border-radius: 12px;
+		    height: 25px;
+	}
+	.tag-3{
+		background: #f4f4f4 ;
+		border-radius: 2px;
+	}
+	.tag-4{
+		background: $purple ;
+		border-radius: 12px;
+		    height: 25px;
+	}
+	.tag-4:before{
+		content: "\E013";
+		position: relative;
+		top: -7px;
+		left: 25px;
+		color: #00c400;
+		display: inline-block;
+		font-family: 'Glyphicons Halflings';
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+	}
+	.btn-primary{
+		width: 49%;
+	}
+	.answered{
+	    background: $green;
+		border-top-left-radius: 16px;
+		border-top-right-radius: 16px;
+		color: white;
+	}
+	.Not_answered{
+	    background:$red;
+		border-radius: 0;
+		border-bottom-left-radius: 16px;
+		border-bottom-right-radius: 16px;
+		color: white;
+	}
+	.Marked,.Ans_Marked{
+		background: $purple;
+		border-radius: 50%;
+		color: white;
+		position:relative;
+	}
+	.Ans_Marked:after{
+		content: "\E013";
+		position:absolute;
+		top: -7px;
+		right: -9px;
+		color: #00c400;
+		display: inline-block;
+		font-family: 'Glyphicons Halflings';
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+	}
+	.btn-light_blue{
+		background:$light_blue;
+		color: #161a23;
+	}
+	::-webkit-scrollbar{
+		width: 6px;
+		background-color: #f1f1f1;
+	}
+
+	::-webkit-scrollbar-thumb	{
+		background-color: #9e9e9e;
+	}
+	@media (min-width: 1200px){
+		.btn-default{
+			width: 11%;
+		}
+	}
+	@media (min-width: 1366px){
+		.btn-default{
+			width: 8.9%;
+		}
+	}
+	@media (max-width: 1366px){
+				
+		.btn-default{
+			width: 11.1%;
+		}
+		.Not_answered{
+			border-bottom-left-radius: 12px;
+			border-bottom-right-radius: 12px;
+		}
+		.answered{
+			border-top-left-radius: 12px;
+			border-top-right-radius: 12px;
+		}	
+		.exam_que_selection{
+			height:565px;
+		}
+		.exam_que_selection_btn{
+			height:350px;
+		}
+	
+	}
+	
+	@media (max-width: 1280px){
+		.btn-default{
+			width: 13.1%;
+		}
+		.exam_que_selection{
+			height:540px;
+		}
+		.exam_que_selection_btn{
+			height:321px;
+		}
+	}
+	
+	@media (max-width: 1024px){
+		.exam_que_selection_btn{
+			height: 300px;
+		}
+	}
+}
+
+
+.btn-primary {
+  border-radius: 0;
+}
+/*modal fullscreen */
+
+.modal.modal-fullscreen {
+  /* Maximize the main wrappers on the screen */
+  /* Make the parent wrapper of the modal box a full-width block */
+  /* Remove borders and effects on the content */
+  /**
+	 * /!\ By using this feature, you force the header and footer to be placed
+	 * in an absolute position. You must handle by yourself the margin of the
+	 * content.
+	 */
+}
+.modal.modal-fullscreen .modal-dialog,
+.modal.modal-fullscreen .modal-content {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.modal.modal-fullscreen .modal-dialog {
+  margin: 0;
+  width: 100%;
+  animation-duration:0.6s;
+}
+.modal.modal-fullscreen .modal-content {
+  border: none;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: inherit;
+  -moz-box-shadow: inherit;
+  -o-box-shadow: inherit;
+  box-shadow: inherit;
+  /* change bg color below */
+ /* background:#1abc9c; */
+}
+.modal.modal-fullscreen.force-fullscreen {
+  /* Remove the padding inside the body */
+}
+.modal.modal-fullscreen.force-fullscreen .modal-body {
+  padding: 0;
+}
+.modal.modal-fullscreen.force-fullscreen .modal-header,
+.modal.modal-fullscreen.force-fullscreen .modal-footer {
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+.modal.modal-fullscreen.force-fullscreen .modal-header {
+  top: 0;
+}
+.modal.modal-fullscreen.force-fullscreen .modal-footer {
+  bottom: 0;
+}

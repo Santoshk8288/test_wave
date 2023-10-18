@@ -1,0 +1,184 @@
+<div class="col-md-12 add-question-page body_top_padding">
+		<div class="panel panel-default">
+				<div class="panel-heading"><ol class="breadcrumb">
+					  <li><a [routerLink] = "['/admin/dashbord']">Dashboard</a></li>
+					  <li><a [routerLink] = "['/admin/listQuestion']">Question Bank</a></li>
+					  <li class="active">
+					  	<span *ngIf="show">Add Question</span>
+					  	<span *ngIf="!show">Edit Question</span>
+					  </li>
+					</ol></div>
+				<div class="panel-body">
+					<form class="form-horizontal" #addQuesForm1="ngForm"  >
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="control-label col-md-1 col-sm-2">Subjects:<span class="error-dangercls">*</span></label>
+								<div class="col-md-4 col-sm-4">
+									<select class="form-control" name="subject" [(ngModel)]="addQuesForm.subject">
+										<option disabled>Select subject</option>
+										<option *ngFor="let sub of subjects" [ngValue]="sub.subid">{{sub.sub_name}}</option>
+									</select>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<tag-input [(ngModel)]="addQuesForm.tags" name="tags" [displayBy]="'tag_name'">
+						                <tag-input-dropdown 
+						                    [autocompleteItems]="autocompleteItemsAsObjects" [identifyBy]="'tag_id'"
+						                    [displayBy]="'tag_name'">
+						                </tag-input-dropdown>
+						            </tag-input>
+								</div>
+							</div>
+						</div>
+						<div class="">
+							<div class="form-group">
+								<label class="control-label col-md-1 col-sm-2">Question:<span class="error-dangercls">*</span></label>
+								
+								<div class="col-md-11 col-sm-10">
+									<!-- <textarea rows="4" cols="5" class="form-control" name="question" [(ngModel)]="addQuesForm.question" ></textarea> -->
+									<!-- <quill-editor name="question" [(ngModel)]="addQuesForm.question"
+						              [options]="editorOptions"
+						              (blur)="onEditorBlured($event)"
+						              (focus)="onEditorFocused($event)"
+						              (ready)="onEditorCreated($event)"
+						              (change)="onContentChanged($event)"
+            						  (change)="checkHeightChanges($event, image,test)"
+						              >
+						            </quill-editor>  -->
+						            
+						            <ckeditor name="question"
+									    [(ngModel)]="addQuesForm.question"
+									    [config]="{uiColor: '#286090'}"
+									    debounce="500">
+									</ckeditor>
+								</div>
+							</div>
+							<div class="col-md-2 col-sm-4">
+				            	<!-- <input type="file" (change)="fileChange($event)" accept="image/*"> -->	
+				           </div>
+				            <div class="col-md-6 col-sm-6"> 
+				            	<!-- <textarea rows="2" cols="5" class="form-control" [(ngModel)]="myProfileViewObj.ImageUrl" name="test"></textarea> -->
+							</div>
+							<div class="form-group col-sm-3" style="text-align: right;">
+								<label class="control-label"></label>
+								<div class="" [hidden]="isHidden">
+									<label class="control-label col-sm-10">Add Option Field:</label>
+									<button class="btn btn-primary btn-light_blue col-sm-2" type="button" (click)="adField()" >+</button>
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<label class="control-label col-sm-2">Options: A.<span class="error-dangercls">*</span></label>
+								<div class="col-sm-10">
+									<!-- <textarea rows="2" cols="5" class="form-control" name="option1" [(ngModel)]="addQuesForm.option1"></textarea> -->
+									<!-- <quill-editor name="option1" [(ngModel)]="addQuesForm.option1"
+						              [options]="editorOptions"
+						              (blur)="onEditorBlured($event)"
+						              (focus)="onEditorFocused($event)"
+						              (ready)="onEditorCreated($event)"
+						              (change)="onContentChanged($event)">
+						            </quill-editor> -->
+						            <ckeditor name="option1" [(ngModel)]="addQuesForm.option1"
+									    [config]="{uiColor: 'rgb(100, 127, 150)'}"
+									    debounce="500">
+									</ckeditor>
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<label class="control-label col-sm-2">Options: B.<span class="error-dangercls">*</span></label>
+								<div class="col-sm-10">
+									<!-- <textarea rows="2" cols="5" class="form-control" name="option2" [(ngModel)]="addQuesForm.option2"></textarea> -->
+									<!-- <quill-editor name="option2" [(ngModel)]="addQuesForm.option2"
+						              [options]="editorOptions"
+						              (blur)="onEditorBlured($event)"
+						              (focus)="onEditorFocused($event)"
+						              (ready)="onEditorCreated($event)"
+						              (change)="onContentChanged($event)">
+						            </quill-editor> -->
+						            <ckeditor name="option2" [(ngModel)]="addQuesForm.option2"
+									    [config]="{uiColor: 'rgb(100, 127, 150)'}"
+									    debounce="500">
+									</ckeditor>
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<label class="control-label col-sm-2">Options: C.<span class="error-dangercls">*</span></label>
+								<div class="col-sm-10">
+									<!-- <textarea rows="2" cols="5" class="form-control" name="option3" [(ngModel)]="addQuesForm.option3"></textarea> -->
+									<!-- <quill-editor name="option3" [(ngModel)]="addQuesForm.option3"
+						              [options]="editorOptions"
+						              (blur)="onEditorBlured($event)"
+						              (focus)="onEditorFocused($event)"
+						              (ready)="onEditorCreated($event)"
+						              (change)="onContentChanged($event)">
+						            </quill-editor> -->
+						            <ckeditor name="option3" [(ngModel)]="addQuesForm.option3"
+									    [config]="{uiColor: 'rgb(100, 127, 150)'}"
+									    debounce="500">
+									</ckeditor>
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<label class="control-label col-sm-2">Options: D.<span class="error-dangercls">*</span></label>
+								<div class="col-sm-10">
+									<!-- <textarea rows="2" cols="5" class="form-control" name="option4" [(ngModel)]="addQuesForm.option4"></textarea> -->
+									<!-- <quill-editor name="option4" [(ngModel)]="addQuesForm.option4"
+						              [options]="editorOptions"
+						              (blur)="onEditorBlured($event)"
+						              (focus)="onEditorFocused($event)"
+						              (ready)="onEditorCreated($event)"
+						              (change)="onContentChanged($event)">
+						            </quill-editor>  -->
+						            <ckeditor name="option4" [(ngModel)]="addQuesForm.option4"
+									    [config]="{uiColor: 'rgb(100, 127, 150)'}"
+									    debounce="500">
+									</ckeditor>
+								</div>
+							</div>
+							<div class="form-group col-md-6" *ngIf="isHidden" >
+								<label class="control-label col-sm-2">Options: E.<span class="error-dangercls">*</span></label>
+								<div class="col-sm-10">
+									<!-- <textarea rows="2" cols="5" class="form-control" name="option5" [(ngModel)]="addQuesForm.option5"></textarea> -->
+									<!-- <quill-editor name="option5" [(ngModel)]="addQuesForm.option5"
+						              [options]="editorOptions"
+						              (blur)="onEditorBlured($event)"
+						              (focus)="onEditorFocused($event)"
+						              (ready)="onEditorCreated($event)"
+						              (change)="onContentChanged($event)">
+						            </quill-editor> -->
+						            <ckeditor name="option5" [(ngModel)]="addQuesForm.option5"
+									    [config]="{uiColor: 'rgb(100, 127, 150)'}"
+									    debounce="500">
+									</ckeditor>
+								</div>
+							</div>
+						</div>
+						
+							<!-- <div class="form-group">
+								<label class="control-label col-sm-4" >Memo:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="memo" [(ngModel)]="addQuesForm.memo">
+								</div>
+							</div> -->
+							<div class="form-group clear">
+								<label class="control-label col-md-1 col-sm-2">Answer:<span class="error-dangercls">*</span></label>
+								<div class="col-md-11 col-sm-10">
+									<select class="form-control" name="answer" [(ngModel)]="addQuesForm.answer" >
+										<option disabled>Select answer</option>
+										<option  *ngFor="let ans of answers" [ngValue]="ans.name">{{ans.name}}</option>
+									</select>
+								</div>
+							</div>
+						
+						<div class="col-sm-12" style="text-align: center;" *ngIf="show">
+							<button class="btn btn-primary btn-light_green" type="submit" (click)="addQuestions(addQuesForm1.value)">Save</button>
+							
+							<button class="btn btn-danger Danger_btn" type="button" [routerLink] = "['/admin/listQuestion']">Cancel</button>
+						</div>
+						<div class="col-sm-12" style="text-align: center;" *ngIf="!show">
+							<button class="btn btn-primary btn-light_green" type="button" (click)="updateQues(addQuesForm1.value)" >Update</button>
+							
+							<button class="btn btn-danger Danger_btn" type="submit" (click)="goBack()">Cancel</button>
+						</div>
+					</form>
+				</div>
+		</div>
+</div>

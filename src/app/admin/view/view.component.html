@@ -1,0 +1,33 @@
+<div class="container body_top_padding">	
+	<div class="col-md-12">
+		<div class="Que_paper" *ngFor="let test of subject; let i = index;" >
+			<h2 class="title" > {{testData.testName}} Question Paper</h2>
+			<div *ngIf="subject.length != 0">
+			<div class="paper_header_div">
+				<h4>Course Name :<span> {{testData.testCourse}}</span></h4>
+				<h4 class="">Subject : <span>{{test.sub_name}}</span></h4>
+				<h4 class="mark_txt">Marks : <span>{{test.tsmm_total_marks}}</span></h4>
+				<!-- <h4 class="total_tym pull-right">Time:<span> 3 hours</span></h4> -->
+			</div>
+			<div class="col-md-12">			
+				<ul class="Que_paper_view">
+					<li class="Question" *ngFor="let ques of test.questions">
+						<div class="Que_paper_view_quelist" [innerHTML]="ques.que_description | safeHtml"></div>
+						<ul class="option">
+							<li class="col-md-6" [innerHTML]="ques.que_optionA | safeHtml"></li>
+							<li class="col-md-6" [innerHTML]="ques.que_optionB | safeHtml"></li>
+							<li class="col-md-6" [innerHTML]="ques.que_optionC | safeHtml"></li>
+							<li class="col-md-6" [innerHTML]="ques.que_optionD | safeHtml"></li>
+							<li class="col-md-6"  *ngIf="ques?.que_optionE != ''" [innerHTML]="ques.que_optionE | safeHtml">{{ques.que_optionE}}</li>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+			</div>
+
+		</div>
+			<div *ngIf="subject == 0"> No subject found in {{testName}} test</div>
+		<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="goBack()"> <i class="icon-arrow-left2"></i> Back</button>	
+	</div>
+</div>

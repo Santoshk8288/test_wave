@@ -1,0 +1,135 @@
+<div class="container-fluid exam_page">
+ 	<div class="commanHeader ">
+ 		{{loginUserData.ins_name}} Online 
+ 		<span *ngIf="testData.test_type == '1'">Speed</span>
+ 		<span *ngIf="testData.test_type == '0'">Practice</span> Test
+    </div>
+	<div class="row">
+			<div class="col-lg-9 col-md-9 col-sm-9">  
+				<h2>{{userTestDetails?.test_name}}</h2>
+				<div class="col-md-12 exam_topic_fliter">
+					<a class="btn btn-primary btn-dark_blue" *ngFor="let subject of userTestDetails?.subjects;let r = index;" (click)="currentIndex(r,1,1);previousQues(question,user.option);getSubjectQuestionTab(subject.questions[0],subject);">{{subject?.sub_name}}</a>
+				</div>
+				<div class="col-md-12 exam_paper_top" style="overflow: scroll;">
+					<p class="pull-left">Question No.<span> {{currentQue.index}}</span></p>
+					<ul class="pull-right">
+						<li class="hide">View in <select>
+							<option value="1">English</option>
+							<option value="1">Hindi</option>
+							</select></li>
+						<li>Right mark:<span class="text_green">{{rightMark}}</span></li>
+						<li>Negative mark:<span class="text_red">{{subNegetiveMarks}}</span></li>
+					</ul>
+					<hr/>
+					<div class="exam_paper_body">
+						<h5  [innerHTML]="question?.que_description | safeHtml">{{question?.que_description}}</h5>
+						<ul class="exam_paper_ans" >
+							<li class="radio">
+								<label>
+									<input type="radio" name="option" [(ngModel)]="user.option" [value]="'A'" [checked]="question?.que_optionA == user.option" (change)="setOption(question,'A')">
+									<div [innerHTML]="question?.que_optionA | safeHtml"></div>
+								</label>
+							</li>
+							<li class="radio">
+								<label>
+									<input type="radio" name="option" [(ngModel)]="user.option" [value]="'B'" [checked]="question?.que_optionB == user.option"  (change)="setOption(question,'B')">
+									<div [innerHTML]="question?.que_optionB | safeHtml"></div>
+								</label>
+							</li>
+							<li class="radio">
+								<label>
+									<input type="radio" name="option" [(ngModel)]="user.option" [value]="'C'" [checked]="question?.que_optionC == user.option" (change)="setOption(question,'C')">
+									<div [innerHTML]="question?.que_optionC | safeHtml"></div>
+								</label>
+							</li>
+							<li class="radio">
+								<label>
+									<input type="radio" name="option" [(ngModel)]="user.option" [value]="'D'" [checked]="question?.que_optionD == user.option" (change)="setOption(question,'D')">
+									<div [innerHTML]="question?.que_optionD | safeHtml"></div>
+								</label>
+							</li>
+							<li class="radio" *ngIf="question?.que_optionE != ''">
+								<label>
+									<input type="radio" [checked]="'E' == user.option" name={{question?.que_id}}  (change)="setOption(question,'E')">
+									<div [innerHTML]="question?.que_optionE | safeHtml"></div>
+								</label>
+							</li>
+						</ul>				
+					</div>
+				</div>
+				<div class="col-md-12 exam_paper_footer">
+					<a class="btn btn-primary btn-light_blue" (click)="markAnsNext(question);">Mark for Review & Next</a>
+					<a class="btn btn-primary btn-light_blue" (click)="resetAns();">Clear Response</a>
+					<a class="btn btn-primary btn-dark_blue pull-right" (click)="saveNext(question)">Save & Next</a>	
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-4 exam_que_paper"> 
+				<div >Total Time Remain: <strong [innerHTML]="theHtmlString | safeHtml"></strong></div>
+				<h4 class="user_name"><strong>{{loginUser[0]?.stu_fname}}</strong></h4>				
+				<div class="exam_que_selection">
+					<div class="exam_que_selection_btn">
+					<p><strong>Question palette :</strong></p>	
+			<div *ngFor="let subject of userTestDetails?.subjects; let i='index' ">
+	            <strong>{{ subject?.sub_name }}</strong><br>
+	            <ng-container *ngFor="let queNum of subject.questions; let j='index'">
+	            <a class="btn btn-default" (click)=" currentIndex(i,j,queNum.que_index);previousQues(question,user.option);getSubjectQuestion(queNum,subject);getQuestionDetails(queNum);" [ngClass]="queNum.que_id==setSelected[queNum.que_index] ? 'answered': queNum.que_id==setReview[queNum.que_index] ? 'Marked' : queNum.que_id==setNotAns[queNum.que_index] ? 'Not_answered' : queNum.que_id==setReviewAns[queNum.que_index] ? 'Ans_Marked' : ''">
+	              <strong>{{ queNum.que_index}}</strong>
+	            </a>
+	            </ng-container>
+	        </div>
+
+       <!--  <div *ngFor="let subject of userTestDetails?.subjects; let i='index' ">
+            <strong>{{ subject?.sub_name }}</strong><br>
+            <ng-container *ngFor="let queNum of subject.questions; let j='index'">
+            
+            <a class="btn btn-default" (click)=" currentIndex(i,j,queNum.que_index);previousQues(question,user.option);getSubjectQuestion(queNum,subject);getQuestionDetails(queNum);" [ngClass]="queNum.que_id==setSelected[queNum.que_index] ? 'answered': queNum.que_id==setReview[queNum.que_index] ? 'Marked' : queNum.que_id==setNotAns[queNum.que_index] ? 'Not_answered' : queNum.que_id==setReviewAns[queNum.que_index] ? 'Ans_Marked' : ''">
+              <strong>{{ queNum.que_index}}</strong>
+            </a>
+            
+            </ng-container>
+        </div> -->
+      
+	</div>
+				<p class="lege">Legend:</p>
+				<ul>
+					<li> <span class="tag"></span> Answered</li>
+					<li> <span class="tag-1"></span> Not Answered</li>
+					<li> <span class="tag-2"></span> Marked</li>
+					<li> <span class="tag-3" ></span> Not Visited</li>
+					<li> <span class="tag-4" ></span> Answered & Marked for Review </li>
+				</ul>
+				<button class="btn btn-primary btn-light_blue" data-toggle="modal" data-target="#myModalFullscreen" contenteditable="false" (click)="goInstruction()">Instructions</button>	
+				<button type="button" class="btn btn-primary btn-light_blue" (click)="submit()">Submit</button>
+						
+				</div>	
+						
+			</div>		
+	</div>
+</div>
+
+<div class="modal fade modal-fullscreen  footer-to-bottom" id="myModalFullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog animated zoomInLeft">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+	            	{{loginUserData.ins_name}} Online 
+			 		<span *ngIf="testData.test_type == '1'">Speed</span>
+			 		<span *ngIf="testData.test_type == '0'">Practice</span> Test
+            </div>
+            <div class="modal-body">
+                <div class="panel-heading">Instruction FOR {{ testData.test_name }}</div>
+				<div class="panel-body">    
+		    	<h4>Please read the following instructions very carefully:</h4>
+		    	<ul>
+					<li>{{instruction?.test_instructions}}</li>
+				</ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

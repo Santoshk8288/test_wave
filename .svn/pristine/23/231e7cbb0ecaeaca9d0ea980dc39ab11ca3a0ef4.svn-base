@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Testwave</title>
+  <base href="/">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+	<link rel="icon" type="image/x-icon" href="favicon_icon.ico">     
+	<link rel="stylesheet" href="assets/css/fonts.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">  
+	<script src="assets/js/jquery.min.js"></script>  
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/chartist.min.js"></script>	
+	<script src="assets/js/perfect-scrollbar.jquery.min.js"></script>  	 
+	<script src="assets/js/demo.js"></script>
+  <script src="assets/js/ckeditor/ckeditor.js"></script>
+</head>
+<body class="testwave-dashboard">
+  <app-root></app-root>  
+</body>
+<script>
+	$(".nav_scroll a").click(function(e) {
+	e.preventDefault();
+
+	var position = $($(this).attr("href")).offset().top;
+	$("body, html").animate({
+	scrollTop: position
+	} /* speed */ );
+	});
+</script>
+<script>
+$(function(){
+ var shrinkHeader = 100;
+  $(window).scroll(function() {
+    var scroll = getCurrentScroll();
+      if ( scroll >= shrinkHeader ) {
+           $('.navbar').addClass('shrink');
+        }
+        else {
+            $('.navbar').removeClass('shrink');
+        }
+  });
+function getCurrentScroll() {
+    return window.pageYOffset || document.documentElement.scrollTop;
+    }
+});
+$(document).ready(function(){
+  $('.welcomepage-navbar li a').click(function(){
+    $('li a').removeClass("active");
+    $(this).addClass("active");
+});
+});
+
+</script>
+</html>

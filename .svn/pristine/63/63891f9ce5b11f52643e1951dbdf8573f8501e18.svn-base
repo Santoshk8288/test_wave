@@ -1,0 +1,37 @@
+.Danger_btn{
+    width: auto;
+    height: auto;
+    line-height: unset;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.student_searchbox{
+	padding-right:0;
+	select{
+	    float: left;
+	    height: 34px;
+	    border-radius: 3px;
+	    border-color: #ccc;
+	    width: 20%;
+	    padding-left: 5px;
+	}
+	.search-box{
+	    width: 77%;
+    	margin-left: 10px;
+	}
+}
+tbody
+	{.btn-light_blue,.Danger_btn{	
+	 	max-width:75px;
+	 	width:75px
+	}
+}
+@media (min-width: 768px){
+
+		.modal-dialog {
+			width: 990px;
+		}
+		
+
+}

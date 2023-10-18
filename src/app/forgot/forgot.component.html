@@ -1,0 +1,19 @@
+<div class="col-md-4 col-md-offset-4 forgot-wrapper">
+	<div class="box">
+		<h2>Forgot Password</h2>
+		<form name="form" (ngSubmit)="f.form.valid && forgotpassword()" #f="ngForm" novalidate>
+			<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !User.valid }">
+				<label for="User">Username<span class="error-dangercls">*</span></label>
+				<input type="text" class="form-control" placeholder="Username" name="User" [(ngModel)]="user.userName" #User="ngModel" required />
+				<div *ngIf="f.submitted && !User.valid" class="help-block">Username is required</div>
+				<div *ngIf="(User.errors && User.errors.pattern)" class="help-block">
+						Username is invalid
+				</div>
+			</div>
+			<div class="">
+				<button type="submit"  class="btn btn-primary submit_btn">Submit</button>
+				<button (click)="goBack();" class="btn  btn-danger Danger_btn">Back</button>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container-fuild test-list body_top_padding">
+        <div class="col-md-12">
+		<div class="panel panel-default">
+				<div class="panel-heading">
+					<ol class="breadcrumb">
+					  <li><a [routerLink] = "['/admin/dashbord']">Dashboard</a></li>
+					  <li><a [routerLink] = "['/admin/testSeries']">Test Series</a></li>
+					  <li class="active">Test Detail</li>
+					</ol>
+				</div>
+				<div class="panel-body">
+				
+					<table class="table table-bordered table-hover">						
+					<thead>
+						<tr>
+							<th class="list_no" >#</th>
+							<th>Test Name</th>
+							<th class="sub_name text-center">Start Date</th>
+							<th class="sub_name text-center">End Date</th>
+							<th class="sub_name text-center">Appear Date</th>
+											
+							<!-- <th>View</th> -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let test of tests;let i = index;" >
+							<td class="list_no" >{{i+1}}</td>
+							<td (click)=" goToView(test.test_id)"><a>{{test.test_name}}</a></td>	
+							<td class="sub_text text-center">{{test.test_opendate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+							<td class="sub_text text-center">{{test.test_closedate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+							<td class="sub_text text-center">{{test.test_appeardate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+							<!-- <td><button class="btn btn-primary btn-light_blue" (click)="openModalView(templateView,test)">View</button></td> -->
+						</tr>							
+					</tbody>
+					</table>   
+				</div>
+			</div>    	 
+		</div>
+	</div>

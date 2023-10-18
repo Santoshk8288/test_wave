@@ -1,0 +1,25 @@
+[{
+	"id": 1,
+	"instituteId":"101",
+	"testName" : "English Test Series"
+},
+{
+	"id": 2,
+	"instituteId":"102",
+	"testName" : "Hindi Test Series"
+},
+{
+	"id": 3,
+	"instituteId":"103",
+	"testName" : "Maths Test Series"
+},
+{
+	"id": 4,
+	"instituteId":"104",
+	"testName" : "Apptitude Test Series"
+},
+{
+	"id": 5,
+	"instituteId":"105",
+	"testName" : "Reasoning Test Series"
+}]

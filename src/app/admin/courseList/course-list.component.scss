@@ -1,0 +1,48 @@
+.Courses_list{
+	/*.btn-light_blue{
+		margin-top:15px;
+	}*/
+}
+.Danger_btn{
+	width:auto;
+	height: auto;
+	line-height: unset;
+}
+.add_course{
+	.form-group{
+		clear: both;
+		display: flow-root;
+		margin-bottom: 0;
+		select[multiple], select[size] {
+			height: auto;
+			margin: 15px 0;
+			width: 100%;
+			max-width: 100%;
+			overflow: auto;
+			option {
+				padding: 5px 10px;
+				background: #EEEEEE;
+				border-bottom: 1px solid white;
+			}
+			option:checked {
+				padding: 5px 10px;
+				background: beige !important;
+			}
+			option:checked:after {
+				content: "\ea11";
+				font-family: 'icomoon' !important;
+				speak: none;
+				font-style: normal;
+				font-weight: normal;
+				font-variant: normal;
+				text-transform: none;
+				line-height: 1;
+				float: right;
+				font-size:12px;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+		}
+		
+	}
+}

@@ -1,0 +1,29 @@
+.instruction-page{	
+	
+	.heading{
+		padding: 10px;
+	}
+	.panel{
+		margin:3% 15px;
+	}
+	.instructionList{
+		text-align: center;
+	}
+	li {
+		line-height: 2;
+		padding-bottom: 5px;
+		list-style: decimal;
+	}
+	.btn-light_blue{
+		margin-left:15px;
+	}
+	.btn-light_green{		
+		margin-right:15px;
+	}
+
+
+}
+
+
+
+

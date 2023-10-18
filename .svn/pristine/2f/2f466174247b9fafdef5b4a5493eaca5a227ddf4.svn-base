@@ -1,0 +1,48 @@
+<div class="col-md-12 add-question-page body_top_padding">
+		<div class="panel panel-default">
+				<div class="panel-heading"><ol class="breadcrumb">
+					  <li><a [routerLink] = "['/admin/dashbord']">Dashboard</a></li>
+					  <li><a class="active">Feedback</a></li>
+					</ol></div>
+				<div class="panel-body">
+					<table class="table table-bordered table-hover">						
+					<thead>
+						<tr>
+							<th class="list_no" >#</th>
+							<th class="text-center">Student Name</th>
+							<th class="sub_text text-center">Email</th>
+							<th class="icon_btn" >Rate</th> 
+							<th >Comments</th>
+							 
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let test of feedback?.feedLists;let i = index;" >
+							<td class="list_no" >{{i+1}}</td>
+							<td class="sub_text text-center" >{{test?.stu_fname}} {{ test?.stu_lname}}</td>
+							<td class="sub_text text-center">{{test?.stu_email}}</td>
+							<td class="text-center"  >{{test?.feed_rating}}</td>
+							<td >{{test?.feed_comment}}</td>	
+										
+						</tr>							
+					</tbody>					
+					</table>   
+					<div class="row"> 
+					<div class="col-xs-6 col-6" >
+					<label class="table_datashow"> Show <select name="endLimit" [(ngModel)]="listEndLimit" (change)="endLimitChange(listEndLimit)">
+							  	<option Value="10" selected ="listEndLimit == 10">10</option>
+							  	<option Value="20" selected ="listEndLimit == 20">20</option>
+							  	<option Value="50" selected="listEndLimit == 50">50</option>
+							  	<option Value="100" selected ="listEndLimit == 100">100</option>
+							  	<option Value="500" selected="listEndLimit == 500">500</option>
+							</select>
+							</label>
+						</div>
+					<div class="col-xs-6 col-6" style="text-align: right;">
+					<pagination [totalItems]="bigTotalItems" [itemsPerPage]='itemPerPageLimit' [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="pageChanged($event)" [boundaryLinks]="true"></pagination>
+				</div>
+				</div>
+			</div>
+		</div>
+</div>
+

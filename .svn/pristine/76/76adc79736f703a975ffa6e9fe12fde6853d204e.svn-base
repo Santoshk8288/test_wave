@@ -1,0 +1,66 @@
+<div class="container-fluid mainCls">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Online Speed Test</div>
+			<div class="panel-body">
+				<table class="table table-hover">
+				  <thead>
+					<tr *ngIf="testList != ''">
+					  <th>Exam</th>
+					  <th class=" text-center">Start Date</th>
+					  <th class="text-center">Close Date</th>
+					  <th></th>
+					  <!-- <th></th> -->
+					</tr>
+					<div style="text-align: center;color: red;" *ngIf="testList == ''">Test is not available for you.</div>
+				  </thead>
+				  <tbody>
+					<tr *ngFor="let details of testList">
+					  <td>{{details.test_name}}</td>
+					  <td class="sub_name">{{details.test_opendate *1000 | date:"MMM dd, yyyy h:mm a"}}</td>
+					  <td class="sub_name">{{details.test_closedate *1000 | date:"MMM dd, yyyy h:mm a"}}</td>
+					  <td class="sub_name"><a class="btn btn-primary btn-light_green" (click)="goTest(details)" *ngIf="(details.res_id == null && details.res_status!=0)">Start Test</a>
+				  		<a class="btn btn-primary btn-light_green" (click)="goTest(details)" *ngIf="(details.res_id !=null && details.res_status ==0)">Resume Test</a></td>
+					</tr>      
+				  </tbody>
+				</table>
+				<div class="col-xs-12 col-12" style="text-align: right;">
+				<pagination [totalItems]="SpeedTestTotalItems" [itemsPerPage]='SpeedTestItemPerPageLimit' [(ngModel)]="SpeedTestCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="getTestListParms($event)" [boundaryLinks]="true"></pagination>
+			</div>
+			</div>
+		  	
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Online Practice Test</div>
+			<div class="panel-body">
+				<table class="table table-hover">
+				  <thead>
+					<tr *ngIf="practiceTest != ''">
+					  <th>Test</th>
+					  <th class=" text-center">Start Date</th>
+					  <th class="text-center">Close Date</th>
+					  <th></th>
+					</tr>
+					<div style="text-align: center;color: red;" *ngIf="practiceTest == ''">Test is not available for you.</div>
+				  </thead>
+				  <tbody>
+					<tr *ngFor="let details of practiceTest">
+					  <td>{{details.test_name}}</td>
+					  <td class="sub_name">{{details.test_opendate *1000 | date:"MMM dd, yyyy h:mm a"}}</td>
+					  <td class="sub_name">{{details.test_closedate *1000 | date:"MMM dd, yyyy h:mm a"}}</td>
+					  <td class="sub_name"><a class="btn btn-primary btn-light_green" (click)="goTest(details)">Start Test</a></td>
+					</tr>      
+				  </tbody>
+				</table>
+				<div class="col-xs-12 col-12" style="text-align: right;">
+				<pagination [totalItems]="precticeTestTotalItems" [itemsPerPage]='precticeTestItemPerPageLimit' [(ngModel)]="precticeTestCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="getTestListParms($event)" [boundaryLinks]="true"></pagination>
+			</div>
+			</div>
+			
+		</div>
+	</div>
+</div>

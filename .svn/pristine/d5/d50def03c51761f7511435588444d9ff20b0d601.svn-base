@@ -1,0 +1,113 @@
+<div class="mainCls Courses_list body_top_padding ">
+    <div class="col-md-2"></div>
+    <div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Courses</div>	
+			<div class="panel-body"> 
+					<button type="button" class="btn btn-primary btn-light_blue" (click)="openModal(templateChooseCrs)">Add Course</button>
+		 
+				<table class="table table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <th>Course Name</th>
+					  <th class="icon_btn sub_text" >Link Subject</th>
+					  <th class="icon_btn" >Edit / Delete</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<!-- <tr *ngFor="let course of courses;let i=index;">
+					  
+					  <td>{{course.cm_name}}</td>
+					  <td class="icon_btn" > <button type="button" class="btn btn-primary btn-light_green" disabled><i class="icon-pencil" ></i></button></td>
+					  <td class="icon_btn" > <button type="button" class="btn btn-danger Danger_btn" disabled><i class="icon-bin" ></i></button></td>
+					  
+					</tr>  -->  
+					 <tr *ngFor="let customCrs of courseAddByIns; let i=index">
+					 
+					  <td>{{customCrs.cm_name}}</td>
+					  <td class="icon_btn" > <button type="button" class="btn btn-primary btn-light_green" (click)="gotoChooseSubject(customCrs.category[0].cat_id)" [disabled]="customCrs.cm_status === 0"><i class="icon-link" ></i></button></td>
+					  <td class="icon_btn" ><button type="button" class="btn btn-primary btn-light_green" (click)="openEditCourseModel(i);openModal(templateEditCourse)" [disabled]="customCrs.cm_status === 0"><i class="icon-pencil" ></i></button> &nbsp; <button type="button" class="btn btn-danger Danger_btn" (click)="removeCourse(customCrs.crs_id,i)" [disabled]="customCrs.cm_status === 0"><i class="icon-bin" ></i></button></td>
+					</tr>    
+				  </tbody>
+				</table>
+				<div class="col-xs-12 col-12" style="text-align: right;">
+					<pagination [totalItems]="courseTotalItems" [itemsPerPage]='itemPerPageLimit' [(ngModel)]="courseCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="instituteCourse($event)" [boundaryLinks]="true"></pagination>
+				</div>
+					  <div class="form-group" style="text-align: right;">
+						<label class="control-label col-sm-4"></label>
+						<div class="col-sm-8">
+
+						<ng-template #templateChooseCrs>
+						  <div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Choose Course </h4>							  
+							</div>
+							<div class="modal-body add_course">
+								<div class="form-group">
+								  <button type="button" class="btn btn-primary btn-light_blue pull-left" (click)="getDefaultCrs();">Default</button><button type="button" class="btn btn-primary btn-light_blue pull-right" (click)="addCustomForm()">Custom</button>
+								  <div class="form-group" >
+								  	<div *ngIf="showDefault">
+									  <select multiple [(ngModel)]="crs" name="cmid" *ngIf="courses.length != 0">
+									  	<option *ngFor="let crs of courses" [value]="crs.cm_id">{{crs.cm_name}}</option>
+
+									  </select><br>
+									  <span *ngIf="courses.length == 0">There are no default course</span>
+									 <!--  <button type="button" class="btn btn-primary btn-light_green pull-left" (click)="addCourse(defaultCrs);modalRef.hide()">Save</button> -->
+									 </div>
+									 <div *ngIf="!showDefault" style="padding-top: 5px;">
+								  <label class="control-label"> Course Name<span class="error-dangercls">*</span></label>
+								  <input class="form-control" type="text" name="crs" placeholder="Enter Course name" [(ngModel)]="crs.crs">
+								</div>
+									</div>
+									
+								</div>
+							</div>
+							<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-light_green pull-left" (click)="addCourse(crs);modalRef.hide()">Save</button>
+							<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="crs.crs='';modalRef.hide()">Cancel</button>			
+							</div>
+						  </div>
+						</ng-template>
+						<ng-template #template>
+						  <div class="modal-content ">
+							<div class="modal-header">
+								<h4 class="modal-title">Add Course </h4>							  
+							</div>
+							<div class="modal-body">
+								<div class="form-group" >
+								  <label class="control-label" style="padding-top: 5px;"> Course Name</label>
+								  <input class="form-control" type="text" name="crs" placeholder="Enter Course name" [(ngModel)]="crs.crs">
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary btn-light_green pull-left" (click)="addCourse(crs);modalRef.hide()">Save</button>
+								<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="crs.crs='';modalRef.hide()">Cancel</button>							
+							</div>
+						  </div>
+						</ng-template>
+						<ng-template #templateEditCourse>
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Course</h4>							  
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+									  <label class="control-label">Edit Course Name</label>
+									  <!-- <input class="form-control" type="text" name="series" [(ngModel)]="series" placeholder="Enter Series" value=""/> -->
+									  <input class="form-control"  type="text" name="editCor" [(ngModel)]="editCourseName.cm_name" placeholder="Edit series"/>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary btn-light_green pull-left" (click)="editCourse(editCourseName);editCor='';modalRef.hide();">Update</button>
+									<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="editCancel();modalRef.hide()">Cancel</button>						
+								</div>
+							</div>
+						</ng-template>
+						</div>
+					</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+

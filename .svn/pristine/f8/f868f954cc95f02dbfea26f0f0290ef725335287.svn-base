@@ -1,0 +1,10 @@
+.tabelDiv{
+	padding: 0px 250px;
+}
+.customTable{
+	border: 1px solid lightgray;
+}
+.mainCls{
+	margin-right:0;
+	margin-left:0;
+}

@@ -1,0 +1,120 @@
+<div class="container-fuild body_top_padding">	
+        <div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">Question Bank</div>
+				<div class="contactPageCol table-responsive panel-body">
+					<button class="btn btn-primary btn-light_blue" [routerLink]="['/admin/addQuestion']">Add Question</button>
+					<!-- <input type="text" name="search" [(ngModel)]="search"><button type="button" (click)="searchQues(search)">Search</button> -->
+					  <div class="col-lg-5 col-sm-6 search-box pull-right">
+					    <div class="col-md-12 search_que_list">
+					   		<input type="radio" name="search" value='0'  [(ngModel)]='questionSearch' checked>  Search by text
+      						<input type="radio" name='search' value='1'  [(ngModel)]='questionSearch'> Search by tag
+					    </div>
+					    <select name="subject" [(ngModel)]="subject" (change)="onChange(subject)">
+					  		<option Value="0" selected="subject">All</option>
+							<option *ngFor="let sub of subjects" [ngValue]="sub.subid" selected ="sub.subid == subject">{{sub.sub_name}}</option>
+					    </select>
+						<div class="input-group col-md-10 pull-right">	
+						  <input type="text" class="form-control" placeholder="Search" name="search" [(ngModel)]="search" (keyup.enter)="searchQues(search)" >
+						  <span class="input-group-btn ">
+							<button class="btn btn-primary btn-light_blue" type="button" (click)="searchQues(search)" >Search</button>
+						  </span>
+						</div>
+					  </div>
+					
+					 <table class="table table-bordered table-hover table-list-search">
+							<thead>
+								<tr>
+									<th class="list_no">#</th>
+									<th>Question</th>
+									<th class="sub_name" >Subject</th>
+									<th class="icon_btn text-center" >Edit</th>
+									<th class="icon_btn text-center" >Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let question of questionsList;let i = index;">
+									<td class="list_no" >{{i+1}}</td>
+									<td (click)="lgModal.show();QestionData(question)" [innerHTML]="question.que_description | safeHtml"></td>
+									<td class="sub_name" >{{question.sub_name}}</td>
+									<td class="icon_btn text-center" ><button type="button" class="btn btn-primary btn-light_green" (click)="goToQestionView(question)"><i class="icon-pencil" ></i></button></td>
+									<td class="icon_btn text-center" ><button class="btn btn-danger Danger_btn" (click)="removeQuesrion(question.que_id)"><i class="icon-bin" ></i></button></td>
+								</tr>
+							</tbody>
+						</table>  
+						<div class="row">
+							<div class="col-xs-6 col-6">
+								<label class="table_datashow"> Show <select name="endLimit" [(ngModel)]="listEndLimit" (change)="endLimitChange(listEndLimit)">
+								  	<option Value="10" selected ="listEndLimit == 10">10</option>
+								  	<option Value="20" selected ="listEndLimit == 20">20</option>
+								  	<option Value="50" selected="listEndLimit == 50">50</option>
+								  	<option Value="100" selected ="listEndLimit == 100">100</option>
+								  	<option Value="500" selected="listEndLimit == 500">500</option>
+								</select>
+								</label>
+							</div>
+							<div class="col-xs-6 col-6" style="text-align: right;">
+								<pagination [totalItems]="bigTotalItems" [itemsPerPage]='itemPerPageLimit' [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="pageChanged($event)" [boundaryLinks]="true"></pagination>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>	
+</div>
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<h4 class="modal-title pull-left">Question</h4>
+		<button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+		  <div class="modal-body table-responsive">
+			<div _ngcontent-c4="" class="">
+			<div _ngcontent-c4="" class="form-group">
+				<label _ngcontent-c4="" class="control-label col-sm-12">Question:</label>
+				<strong _ngcontent-c4="" class="col-md-12  ques_box" [innerHTML]="question.que_description | safeHtml">
+				</strong>
+			</div>
+			<div _ngcontent-c4="" class="form-group col-md-6 no-padding">
+				<label _ngcontent-c4="" class="control-label col-sm-3">Options: A :-</label>
+				<strong class="col-sm-7" [innerHTML]="question.que_optionA | safeHtml">
+				</strong>
+			</div>
+			<div _ngcontent-c4="" class="form-group col-md-6 no-padding">
+				<label _ngcontent-c4="" class="control-label col-sm-3">Options: B :-</label>
+				<strong _ngcontent-c4="" class="col-sm-7" [innerHTML]="question.que_optionB | safeHtml">
+				</strong>
+			</div>
+			<div _ngcontent-c4="" class="form-group col-md-6 no-padding clear">
+				<label _ngcontent-c4="" class="control-label col-sm-3">Options: C :-</label>
+				<strong _ngcontent-c4="" class="col-sm-7" [innerHTML]="question.que_optionC | safeHtml">
+				</strong>
+			</div>
+			<div _ngcontent-c4="" class="form-group col-md-6 no-padding">
+				<label _ngcontent-c4="" class="control-label col-sm-3">Options: D :-</label>
+				<strong _ngcontent-c4="" class="col-sm-7" [innerHTML]="question.que_optionD | safeHtml">
+				</strong>
+			</div>
+			<div _ngcontent-c4="" class="form-group col-md-6 no-padding clear">
+				<label _ngcontent-c4="" class="control-label col-sm-3" *ngIf="question?.que_optionE != ''">Options: E :-</label>
+				<strong _ngcontent-c4="" class="col-sm-7" [innerHTML]="question.que_optionE | safeHtml">
+				</strong>
+			</div>
+		</div>		
+			<div _ngcontent-c4="" class="form-group clear no-padding">
+				<label _ngcontent-c4="" class="control-label col-sm-2 ans_cls">Answer :-</label>
+				<strong _ngcontent-c4="" class=" col-sm-10 text-left" [innerHTML]="question.que_answer">
+				</strong>
+			</div>
+
+
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="lgModal.hide()">Cancel</button>						
+		</div>
+	</div>
+	  </div>
+	</div>
+

@@ -1,0 +1,40 @@
+<div class="row mainCls">
+    <div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading" *ngIf="authService.getLoginUserData().usr_type != 1">Online Test History</div>
+			<div class="panel-heading" *ngIf="authService.getLoginUserData().usr_type == 1"><ol class="breadcrumb">
+					  <li><a [routerLink]="['/admin/dashbord']">Dashboard</a></li>
+					  <li><a [routerLink]="['/admin/student']" >Student</a></li>
+					  <li class="active">Result list </li>
+					</ol></div>
+			<div class="panel-body">
+				<table class="table table-bordered table-hover" *ngIf="historyTotalItems != ''">
+	    	      <thead>
+			        <tr>
+			          <th>Test Name</th>
+			          <th class="sub_text text-center">Test Type</th>
+			          <th class="sub_text text-center">Date</th>
+			          <th class="sub_text text-center">Max.Marks</th>
+			          <th class="sub_text text-center">Obtained</th>
+			        </tr>
+			      </thead>
+			      <tbody>
+			        <tr *ngFor="let details of historyList" (click)="viewReport(details)">
+			          <td >{{details.test_name}}</td>
+			          <td class="sub_text text-center" *ngIf="details.test_type==1">Speed Test</td>
+			          <td class="sub_text text-center" *ngIf="details.test_type==0">Practice Test</td>
+			          <td class="sub_text text-center">{{details.res_createdate *1000 |date}}</td>
+			          <td class="sub_text text-center">{{details.test_max_marks}}</td>
+			          <td class="sub_text text-center">{{details.res_marks_abtain}}</td>
+			        </tr>      
+			      </tbody>
+			    </table>
+			    <div style="text-align: center;color: red;" *ngIf="historyTotalItems == ''">Result is not available for you.</div>
+			  	<div class="col-xs-12 col-12" style="text-align: right;">
+					<pagination [totalItems]="historyTotalItems" [itemsPerPage]='itemPerPageLimit' [(ngModel)]="historyCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="getHistoryList($event)" [boundaryLinks]="true"></pagination>
+				</div>
+		  	</div>
+		  	
+		</div>
+	</div>
+</div>

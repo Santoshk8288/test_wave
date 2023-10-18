@@ -1,0 +1,27 @@
+ [
+ 	{
+	"id": 1,
+	"instituteId":"101",
+	"testName" : "English Test"
+},
+{
+	"id": 2,
+	"instituteId":"102",
+	"testName" : "Hindi Test"
+},
+{
+	"id": 3,
+	"instituteId":"103",
+	"testName" : "Maths Test"
+},
+{
+	"id": 4,
+	"instituteId":"104",
+	"testName" : "Apptitude Test"
+},
+{
+	"id": 5,
+	"instituteId":"105",
+	"testName" : "Reasoning Test"
+}
+]

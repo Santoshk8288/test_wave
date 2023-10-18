@@ -1,0 +1,179 @@
+/*----btn color------*/
+$red:#d5300e;
+$green:#58a61b;
+$purple:#704dab;
+$dark_blue:#35497b;
+$light_blue:#83beff;
+
+.login-wrapper {	
+	height:506px;
+	margin-top: 6%;
+	.box {
+	  margin: 0 auto;
+	  padding: 30px 80px;
+	  float: none;
+	  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+	  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+	  -ms-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+	  -o-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+	  box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+	  background: #fff;
+	  -webkit-border-radius: 0px;
+	  -moz-border-radius: 0px;
+	  -ms-border-radius: 0px;
+	  -o-border-radius: 0px;
+	  border-radius: 0;
+	  width:65%;
+	  margin-left: 0;
+	  display:inline-block;
+	  height: 506px;
+		h2{
+			margin-top: 10px;
+			margin-bottom: 40px;
+			}
+		
+		.division {
+			display: inline-block;
+			margin: 15px 0 15px;
+			position: relative;
+			text-align: center;
+			width: 100%;
+			 hr {
+				border-color: #E2E2E4;
+				border-width: 1px;
+				margin: 0;
+				position: absolute;
+				width: 40%;
+			}
+			.left {
+				top: 13px;
+			}
+			.right {
+				bottom: 6px;
+				right: 0;
+			}
+		}
+		.login_btn{
+			border-radius: 0;
+			color: #fff;
+			background-color: $dark_blue;
+			border-color: $dark_blue;
+			font-weight: 600;
+			letter-spacing: 0.5px;	
+			width: 100%;
+			height: 40px;
+		}
+		.login_btn:hover{ 
+			background:$light_blue;
+			color:$dark_blue;		
+		}
+
+		.form-group{
+		    margin-bottom: 30px;
+			position:relative;
+			input{
+				height: 40px;
+				border-radius: 0;
+				border: none;
+				box-shadow: unset;
+				border-bottom: 1px solid;
+			}
+			label {
+				letter-spacing: 0.5px;
+				font-weight:500;
+			}
+		}
+		.sign_in_p_txt{
+			display:inline-block;
+		}
+		.change_psd{
+			padding-left:0;
+		}
+		.sign_up_a_txt{
+			padding-left: 0;
+			text-decoration: underline;
+			color: #35497b;
+		}
+		.sign_up_a_txt:hover{
+			text-decoration:none
+		}
+		.forgot_pswd_btn{
+			margin-bottom:28px;
+		}
+		.help-block {
+			display: -webkit-inline-box;
+			margin-right: 15px;
+			position:absolute;
+		}
+		
+	}
+	@media (max-width: 1366px){
+		.box{
+			margin: 0 auto;
+			padding: 30px 40px;
+		}
+			
+	}
+	
+		
+	.ryt_img{
+		float: right;
+		width: 35%;
+		height: 506px;
+		background-image: url(../../assets/img/signup.jpg);
+		background-size: cover;
+		color: #fff;		
+		padding: 0 3%;
+		h2{
+			margin-top: 70px;
+			font-family: Lobster;
+		}
+		.sign_up_a_txt{
+			background: #fff;
+			padding: 6px 25%;
+			margin-top: 100%;
+			color: #35497b;
+		}
+		.sign_up_a_txt:hover{
+			background: transparent;
+			color: white;
+			text-decoration: none;
+			border: 2px solid;
+		}
+		.sign_up_p_txt{
+			padding-top:15px;
+		}
+	}
+	
+}
+@media (max-width: 1280px){
+	
+	.login-wrapper {
+		width: 50.666667%;
+		margin-left: 25.333333%;
+	}
+}
+@media (max-width: 1024px){
+	
+	.login-wrapper {
+		width: 56.666667%;
+		margin-left: 22.333333%;
+	}
+}
+
+@media (max-width: 640px){
+	
+	.login-wrapper {
+		width: auto;
+		margin-left: 0;
+		    margin-top: 20%;
+	 .box{		
+			width: 100%;
+			height: 420px;
+		}
+	.ryt_img {
+			display:none
+		}
+	}
+}
+

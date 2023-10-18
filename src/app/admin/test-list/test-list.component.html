@@ -1,0 +1,175 @@
+<div class="container-fuild test-list body_top_padding">
+        <div class="col-md-12">
+		<div class="panel panel-default">
+				<div class="panel-heading">Test detail</div>
+				<div class="panel-body">
+				<button class="btn btn-primary btn-light_blue" [routerLink] = "['/admin/newTestDetails']">Add Test</button>
+				
+				<div class="col-md-5 col-sm-4 col-xs-12 search-box pull-right">
+					<label>Test Type </label> <select name="subject" [(ngModel)]="selectTestType" (change)="getSelectTestType(selectTestType)">
+						<option [ngValue]="" >All</option>
+						<option [ngValue]="1" >Speed Test</option>
+						<option [ngValue]="0" >Practice Test</option>
+					</select>
+					<div class="input-group">
+					  <input type="text" class="form-control" placeholder="Search" name="search" [(ngModel)]="search" (keyup.enter)="searchTestList(search)">
+						<span class="input-group-btn " >
+						<button class="btn btn-primary btn-light_blue" type="button" (click)="searchTestList(search)" >Search</button>
+						</span>
+					</div>
+				</div>
+					<table class="table table-bordered table-hover">						
+					<thead>
+						<tr>
+							<th class="list_no" >#</th>
+							<th>Test Name</th>
+							<th class="sub_text text-center">Start Date</th>
+							<th class="sub_text text-center">End Date</th>
+							<th class="sub_text text-center">Appear Date</th>
+							<th class="sub_text icon_btn">Result </th> 
+<!--status icon-->
+							<th class="icon_btn">Status</th>
+							<!--end of status Icon-->
+							<th class="sub_text icon_btn">Link in series</th> 
+							<th class="icon_btn">Edit / Delete </th>							
+							<!-- <th>View</th> -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let test of tests;let i = index;" >
+							<td class="list_no" >{{i+1}}</td>
+							<td (click)=" goToView(test.test_id)"><a>{{test.test_name}}</a></td>	
+							<td class="sub_text text-center">{{test.test_opendate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+							<td class="sub_text text-center">{{test.test_closedate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+							<td class="sub_text text-center">{{test.test_appeardate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+							<td class="sub_text text-center"><button class="btn btn-primary btn-light_green" data-toggle="tooltip"  data-placement="center" title="View test result" (click)="goToTestResult(test)">View</button></td>
+<!--status code-->
+							<td class="text-center">
+								<button *ngIf="test.test_total_questions != test.addQueCount && test.test_status==0"  class="btn btn-primary" [ngClass]="test.test_status == 1 ? 'btn-danger Danger_btn': test.test_status == 0 ? ' btn-primary btn-light_blue':'' " (click)="testStatusUpdateAlert(test);" data-toggle="tooltip"  data-placement="center" title="{{test.test_status==1 ? 'Unpublish test' : 'Publish test'}}">
+									<span *ngIf="test.test_status==0">Publish</span>
+									<span *ngIf="test.test_status==1">Unpublish</span>
+								</button>
+								<button *ngIf="test.test_total_questions == test.addQueCount || (test.test_total_questions != test.addQueCount && test.test_status==1)"  class="btn btn-primary"
+								[ngClass]="test.test_status == 1 ? 'btn-danger Danger_btn': test.test_status == 0 ? ' btn-primary btn-light_blue':'' "
+								 (click)="testStatusUpdate(test);" data-toggle="tooltip"  data-placement="center" title="{{test.test_status==1 ? 'Unpublish test' : 'Publish test'}}">
+									<span *ngIf="test.test_status==0">Publish</span>
+									<span *ngIf="test.test_status==1">Unpublish</span>
+								</button>
+							</td>
+							<!--End of status code-->
+    						<td class="text-center"><button class="btn btn-primary btn-light_green" (click)="openModal(template,test)" data-toggle="tooltip"  data-placement="center" title="Link in series"><i class="icon-link" ></i></button></td>
+							<td class="text-center" ><button type="button" class="btn btn-primary btn-light_green" (click)="getTestIdForEdit(test.test_id)"><i class="icon-pencil" ></i></button> &nbsp; <button class="btn btn-danger Danger_btn" (click)="deleteTest(test.test_id)"><i class="icon-bin" ></i></button></td>
+							<!-- <td><button class="btn btn-primary btn-light_blue" (click)="openModalView(templateView,test)">View</button></td> -->
+						</tr>							
+					</tbody>					
+					</table>  
+					<div class="row"> 
+					<div class="col-xs-6 col-6" >
+					<label class="table_datashow"> Show <select name="endLimit" [(ngModel)]="listEndLimit" (change)="endLimitChange(listEndLimit)">
+							  	<option Value="10" selected ="listEndLimit == 10">10</option>
+							  	<option Value="20" selected ="listEndLimit == 20">20</option>
+							  	<option Value="50" selected="listEndLimit == 50">50</option>
+							  	<option Value="100" selected ="listEndLimit == 100">100</option>
+							  	<option Value="500" selected="listEndLimit == 500">500</option>
+							</select>
+							</label>
+						</div>
+					<div class="col-xs-6 col-6" style="text-align: right;">
+					<pagination [totalItems]="courseTotalItems" [itemsPerPage]='itemPerPageLimit' [(ngModel)]="courseCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="getInstituteTestList($event)" [boundaryLinks]="true"></pagination>
+				</div>
+				</div>
+				
+			</div>    	 
+		</div>
+        <ng-template #template>
+               	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">&times;</button>
+							<h4 class="modal-title">Test add in series</h4>														
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+							  <label class="control-label"> Add in series</label>
+							   <select class="form-control" name="ser" [(ngModel)]="ser">
+									<option disabled selected value="">Select Test series</option>
+									<option *ngFor="let ser of seriesList" [value]="ser.ser_id">{{ser.ser_name}}</option>
+								</select> 
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" [disabled]="!seriesList" class="btn btn-primary btn-light_green pull-left" (click)="addTestInSeries(ser);ser='';modalRef.hide()">Save</button>
+							<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="ser='';modalRef.hide()">Cancel</button>						
+						</div>
+					</div>
+                </ng-template>
+
+                <ng-template #templateView >
+                  <div class="modal-content-lg">
+					  <div class="modal-header">
+						<h4 class="modal-title pull-left">Test Details</h4>
+						<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+						  <span aria-hidden="true">&times;</span>
+						</button>
+					  </div>
+					  <div class="modal-body">
+						<table class="table table-bordered table-hover">
+						  <thead>
+							<tr >
+							  <th>Test Name</th>
+							  <th>Total Question</th>
+							  <th>Test Duration</th>
+							  <th>Max. Marks</th>
+							  <th>Test OpenDate</th>
+							  <th>Test CloseDate</th>
+							  <th>Test AppearDate</th>
+							</tr></thead>
+							<tbody>
+							  <tr *ngFor="let test of testData">
+								<td>{{test.test_name}}</td>
+								<td>{{test.test_total_questions}}</td>
+								<td>{{test.test_duration}}</td>
+								<td>{{test.test_max_marks}}</td>
+								<td>{{test.test_opendate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+								<td>{{test.test_closedate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+								<td>{{test.test_appeardate * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+
+							  </tr></tbody>
+
+                          <tr *ngFor="let ques of testData[0].subjects;let k = index;">
+                              <th>Subject</th><td>{{ques.sub_name}}</td></tr>
+                              <tr>
+                              <th>Question</th>
+                              <th>Option A</th>
+                              <th>Option B</th>
+                              <th>Option C</th>
+                              <th>Option D</th>
+                              <th>Option E</th>
+                              <th>Answer</th>
+                            </tr>
+                            <tr *ngFor="let ques of testData[0].subjects[0].questions">
+                              <td>{{ques.que_description}}</td>
+                              <td>{{ques.que_optionA}}</td>
+                              <td>{{ques.que_optionB}}</td>
+                              <td>{{ques.que_optionC}}</td>
+                              <td>{{ques.que_optionD}}</td>
+                              <td>{{ques.que_optionE}}</td>
+                              <td>{{ques.que_answer}}</td>
+                            </tr>
+                          </table>
+                          
+                      <!-- <tr>
+                            <th>Test Name</th><td>{{testData[0].test_name}}</td>
+                            <th>Total Question</th><td>{{testData[0].test_total_questions}}</td>
+                            <th>Test Duration</th><td>{{testData[0].test_duration}}</td>
+                            <th>Max. Marks</th><td>{{testData[0].test_max_marks}}</td>
+                            
+                            <th>Test OpenDate</th><td>{{testData[0].test_opendate | date:'dd-MM-yyyy H:mm'}}</td>
+                            <th>Test CloseDate</th><td>{{testData[0].test_closedate | date:'dd-MM-yyyy H:mm'}}</td>
+                            <th>Test AppearDate</th><td>{{testData[0].test_appeardate | date:'dd-MM-yyyy H:mm'}}</td>
+                            <th>Test Total Question</th><td>{{testData[0].test_total_questions}}</td></tr>
+                             -->
+                         
+                  </div>
+              </div>
+                </ng-template>
+</div>

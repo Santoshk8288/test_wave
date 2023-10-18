@@ -1,0 +1,194 @@
+<div class="container-fuild test-list body_top_padding">
+        <div class="col-md-12">
+		<div class="panel panel-default">
+				<div class="panel-heading">Student detail</div>
+				<div class="panel-body table-responsive">
+				<button class="btn btn-primary btn-light_blue" [routerLink] = "['/admin/registration']">Add Student</button>
+				<div class="col-sm-5 pull-right student_searchbox">
+					<select name="list" [(ngModel)]="listStudent" (change)="studentListChange(listStudent)">
+								<option value='0'>Course</option>
+								<option value='1'>Series</option>
+								<option value='2'>Coupon</option>
+							</select>
+				 	<div class="search-box pull-right ">
+						<div class="input-group">			
+						  <input type="text" class="form-control" placeholder="Search " name="search" [(ngModel)]="search">
+						  <span class="input-group-btn ">
+							<button class="btn btn-primary btn-light_blue" type="button" (click)="searchStudent(search)" >Search</button>
+						  </span>
+						</div>
+				 	 </div>
+				 </div>
+					<table class="table table-bordered table-hover" *ngIf="(listStudent == 1)|| (listStudent == 0)">						
+					<thead>
+						<tr>
+							<th class="list_no" >#</th>
+							<th (click)="lgModal.show();getStudentDetails(student.stu_id)" >Name</th>
+							<th>Email</th>
+							<th class="icon_btn">Result </th>
+							<th class="icon_btn">Edit </th>
+							<th class="sub_name icon_btn">Status </th>			
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let student of students;let i = index;">
+							<td class="list_no" >{{i+1}}</td>
+							<td (click)="lgModal.show();getStudentDetails(student.stu_id)"  ><a>{{student.stu_fname}} {{student.stu_lname}}</a></td>
+							<td>{{student.stu_email }}</td>
+							<td class="text-center"><button type="button" class="btn btn-primary btn-light_green" (click)="goToStudentResult(student)">View</button></td>
+							<td class="text-center" ><button type="button" class="btn btn-primary btn-light_green" (click)="getStudentIdForEdit(student.stu_id)"><i class="icon-pencil" ></i></button></td>
+							<td class="text-center" ><button class="btn " (click)="changeStatus(student)" [ngClass]="student.usr_isactive == 1 ? 'btn-danger Danger_btn': student.usr_isactive == 0 ? ' btn-primary btn-light_blue':'' "><span *ngIf="student.usr_isactive==0">Active</span>
+								<span *ngIf="student.usr_isactive==1">Deactive</span></button></td>
+							
+						</tr>							
+					</tbody>
+					</table>
+					<table class="table table-bordered table-hover" *ngIf="listStudent == 2">						
+					<thead>
+						<tr>
+							<th class="list_no" >#</th>
+							<th>Student name</th>
+							<th>Coupon No.</th>
+							<th >Email </th>
+							<!-- <th>Status </th> -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let cstudent of students;let i = index;">
+							<td class="list_no" >{{i+1}}</td>
+							<td><a>{{cstudent.gst_name}} </a></td>
+							<td>{{cstudent.cou_code }}</td>
+							<td>{{cstudent.gst_email }}</td>
+							<!-- <td class="text-center" ><button class="btn " (click)="changeStatus(cstudent)" [ngClass]="cstudent.usr_isactive == 1 ? 'btn-danger Danger_btn': cstudent.usr_isactive == 0 ? ' btn-primary btn-light_blue':'' "><span *ngIf="cstudent.usr_isactive==0">Active</span>
+								<span *ngIf="cstudent.usr_isactive==1">Deactive</span></button></td> -->
+							
+						</tr>							
+					</tbody>
+					</table>    
+				
+					<div class="row"> 
+					<div class="col-xs-6 col-6" >
+					<label class="table_datashow"> Show <select name="endLimit" [(ngModel)]="listEndLimit" (change)="endLimitChange(listEndLimit)">
+							  	<option Value="10" selected ="listEndLimit == 10">10</option>
+							  	<option Value="20" selected ="listEndLimit == 20">20</option>
+							  	<option Value="50" selected="listEndLimit == 50">50</option>
+							  	<option Value="100" selected ="listEndLimit == 100">100</option>
+							  	<option Value="500" selected="listEndLimit == 500">500</option>
+							</select>
+							</label>
+						</div>
+					<div class="col-xs-6 col-6" style="text-align: right;">
+						<pagination [totalItems]="studentTotalItems" [itemsPerPage]='itemPerPageLimit' [(ngModel)]="studentCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="getStudentList($event)" [boundaryLinks]="true"></pagination>
+					</div>
+				</div>
+			</div>    	 
+		</div>
+	</div>
+        
+</div>
+<!-- <ng-template #template> -->
+               	<!-- <div class="modal-content"> -->
+						<!-- <div class="modal-header"> -->
+							<!-- <button type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">&times;</button> -->
+							<!-- <h4 class="modal-title">Student</h4>														 -->
+						<!-- </div> -->
+						<!-- <div class="modal-body"> -->
+							<!-- <div class="form-group"> -->
+							  <!-- <label class="control-label">Student Details</label> -->
+							   <!-- <table class="table table-bordered table-hover table-list-search"> -->
+					
+							<!-- <thead> -->
+								<!-- <tr> -->
+									
+									<!-- <th>Name</th>	 -->
+									<!-- <th>Father's Name</th> -->
+									<!-- <th>Mobile No</th> -->
+									<!-- <th>Contact No</th> -->
+									<!-- <th>Address</th> -->
+									<!-- <th>DOB</th> -->
+									<!-- <th>Email</th> -->
+									<!-- <th>Qualification</th> -->
+									<!-- <th>User Name</th> -->
+									<!-- <th>City</th> -->
+								<!-- </tr> -->
+							<!-- </thead> -->
+							<!-- <tbody> -->
+								<!-- <tr *ngFor="let stu of studentDetails;let i = index;"> -->
+									
+									<!-- <td>{{stu.stu_fname}} {{stu.stu_lname}}</td> -->
+									<!-- <td>{{stu.stu_fathername}}</td> -->
+									<!-- <td>{{stu.stu_contact_no1}}</td> -->
+									<!-- <td>{{stu.stu_contact_no2}}</td> -->
+									<!-- <td>{{stu.stu_address}}</td> -->
+									<!-- <td>{{stu.stu_dob}}</td> -->
+									<!-- <td>{{stu.stu_email}}</td> -->
+									<!-- <td>{{stu.stu_qualification}}</td> -->
+									<!-- <td>{{stu.usr_username}}</td> -->
+									<!-- <td>{{stu.stu_city}}</td> -->
+								<!-- </tr> -->
+								
+							<!-- </tbody> -->
+							
+						<!-- </table> -->
+							<!-- </div> -->
+						<!-- </div> -->
+						<!-- <div class="modal-footer"> -->
+							<!-- <button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="modalRef.hide()">Cancel</button>						 -->
+						<!-- </div> -->
+					<!-- </div> -->
+                <!-- </ng-template> -->
+				
+				
+				
+				<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				  <div class="modal-dialog modal-lg">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<h4 class="modal-title pull-left">Student</h4>
+						<button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+						  <span aria-hidden="true">&times;</span>
+						</button>
+					  </div>
+					  <div class="modal-body table-responsive">
+						<div class="form-group">
+							  <label class="control-label">Student Details</label>
+							   <table class="table table-bordered table-hover table-list-search">
+					
+							<thead>
+								<tr>
+									
+									<th>Name</th>	
+									<th>Father's Name</th>
+									<th>Mobile No</th>
+									<th>Contact No</th>
+									<th>Address</th>
+									<th>DOB</th>
+									<th>Email</th>
+									<th>Qualification</th>
+									<th>User Name</th>
+									<th>City</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let stu of studentDetails;let i = index;">
+									
+									<td>{{stu.stu_fname}} {{stu.stu_lname}}</td>
+									<td>{{stu.stu_fathername}}</td>
+									<td>{{stu.stu_contact_no1}}</td>
+									<td>{{stu.stu_contact_no2}}</td>
+									<td>{{stu.stu_address}}</td>
+									<td>{{stu.stu_dob | date:'MMM dd, yyyy' }}</td>
+									<td>{{stu.stu_email}}</td>
+									<td>{{stu.stu_qualification}}</td>
+									<td>{{stu.usr_username}}</td>
+									<td>{{stu.stu_city}}</td>
+								</tr>
+								
+							</tbody>
+							
+						</table>
+							</div>
+					  </div>
+					</div>
+				  </div>
+				</div>

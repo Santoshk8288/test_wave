@@ -1,0 +1,86 @@
+<div class="container-fuild body_top_padding">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<ol class="breadcrumb">
+					<li><a [routerLink] = "['/admin/dashbord']">Dashboard</a></li>
+					<li><a [routerLink] = "['/admin/testSeries']">Test Series</a></li>
+					<li class="active">Series Coupons : {{listPage.ser_name}}</li>
+				</ol>
+			</div>	
+			<div class="panel-body">
+				<button type="button" class="btn btn-primary btn-light_blue" (click)="openModal(templateCoupon)">Add Coupon</button>
+				 <table class="table table-bordered table-hover">					
+					<thead>
+						<tr>
+							<th class="list_no" >#</th>
+							<th>Test Series Coupons</th>
+							<th>Date</th>
+							<th class="icon_btn text-center">Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let couponList of coupons;let i = index;">
+							<td class="list_no" >{{i+1}}</td>
+							<td (click)="goToCouponDetails(couponList)"><a >{{couponList.cd_count}}</a></td>
+							<td>{{couponList.cd_date * 1000 | date:'MMM dd, yyyy h:mm a'}}</td>
+							<td class="text-center" ><button class="btn btn-danger Danger_btn" (click)="removeCoupons(couponList)"><i class="icon-bin" ></i></button></td>
+						</tr>							
+					</tbody>
+				</table> 
+				<div class="row"> 
+					<div class="col-xs-6 col-6" >
+					<label class="table_datashow"> Show <select name="endLimit" [(ngModel)]="listEndLimit" (change)="endLimitChange(listEndLimit)">
+							  	<option Value="10" selected ="listEndLimit == 10">10</option>
+							  	<option Value="20" selected ="listEndLimit == 20">20</option>
+							  	<option Value="50" selected="listEndLimit == 50">50</option>
+							  	<option Value="100" selected ="listEndLimit == 100">100</option>
+							  	<option Value="500" selected="listEndLimit == 500">500</option>
+							</select>
+							</label>
+						</div>  
+					<!-- <div class="col-xs-6 col-6" >
+						<label class="table_datashow"> Show <select name="endLimit" [(ngModel)]="listEndLimit" (change)="endLimitChange(listEndLimit)">
+					  	<option Value="10" selected ="listEndLimit == 10">10</option>
+					  	<option Value="20" selected ="listEndLimit == 20">20</option>
+					  	<option Value="50" selected="listEndLimit == 50">50</option>
+					  	<option Value="100" selected ="listEndLimit == 100">100</option>
+						</select>
+						</label>
+					</div> -->
+					<div class="col-xs-12 col-12" style="text-align: right;">
+					<pagination [totalItems]="couponTotalItems" [itemsPerPage]='itemPerPageLimit' [(ngModel)]="couponCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="getCouponList($event)" [boundaryLinks]="true"></pagination>
+				</div>
+				<div class="form-group" style="text-align: right;">
+					<label class="control-label col-sm-4"></label>
+					<div class="col-sm-8">
+						<ng-template #templateCoupon>
+						  <div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Coupon </h4>							  
+							</div>
+							<div class="modal-body add_course">
+								<div class="form-group">
+								  <div class="form-group" >
+								  	<div>
+									  <label>Institute Name</label>
+									  <input class="form-control" type="text" name="cname" [(ngModel)]="sAdmin[0].ins_name"  value="sAdmin[0]?.ins_name" disabled>
+									  <br>
+									  <label>Total Coupon</label>
+									  <input type="number" class="form-control" name="climit" [(ngModel)]="cpn.climit">
+									 </div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+							<button type="button" class="btn btn-primary btn-light_green pull-left" (click)="addCoupon(cpn);modalRef.hide()">Save</button>
+							<button type="button" class="btn btn-danger Danger_btn pull-right" aria-label="Close" (click)="cpn.climit='';modalRef.hide()">Cancel</button>			
+							</div>
+						  </div>
+						</ng-template>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

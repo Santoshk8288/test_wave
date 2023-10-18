@@ -1,0 +1,13 @@
+.add-question-page{
+	.btn-danger{
+		border-radius:2px;
+	}
+	.btn-danger:hover {
+		box-shadow: 0 12px 20px -10px rgba(201, 48, 44, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(201, 48, 44, 1);
+	}
+	.quill-editor {
+	   min-height: 16em;
+	   max-height: 20em;
+	   overflow-y: auto;
+	}
+}

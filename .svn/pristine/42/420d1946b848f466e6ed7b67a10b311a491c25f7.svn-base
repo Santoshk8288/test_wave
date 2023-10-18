@@ -1,0 +1,146 @@
+
+
+.sign-up-wrapper{
+  margin-top: 1%;
+  text-align:center;
+  .box{
+    margin: 0 auto;
+    padding: 30px 40px;
+    float: none;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+    -ms-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+    -o-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+    background: #fff;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0;
+    width: 75%;
+    margin-left: 0;
+    display: inline-block;
+    height: 900px;
+    overflow-y: scroll;
+	text-align:left;
+		h2{
+		  margin-top: 10px;
+		  margin-bottom: 25px;
+		  }
+		&::-webkit-scrollbar{
+		  width: 6px;
+		  background-color: #F5F5F5;
+		  }
+		&::-webkit-scrollbar-thumb{
+		  background-color: #000000;
+		  }
+		.profileImg{
+			text-align: -webkit-center;
+			img{
+				width: 130px;
+				height: 130px;
+				margin-bottom: 20px;
+				border-radius: 5%;
+			  }
+		}
+		textarea.form-control {
+			width: 100%;
+			min-width: 100%;
+			max-width: 100%;
+		}
+    }
+	.Reg_btn, .Danger_btn{
+		padding: 6px 30px;
+		float:left;
+	}
+	.Danger_btn{
+		float:right
+	}
+}
+
+@media (max-width: 1366px){
+ .sign-up-wrapper{
+		margin-top: 1%;
+   .box{
+  		height: 740px ;
+      }
+  }
+}
+
+@media (max-width: 1280px){
+ .sign-up-wrapper{
+			margin-top: 1%;	
+		 .box{
+			height: 660px ;
+		  }
+ 	}
+}
+@media (max-width: 1024px){
+ .sign-up-wrapper{
+		margin-top: 1%;	
+   .box{
+  		height: 747px ;
+    }
+  }
+}
+
+.ryt_img{
+  float: right;
+  width: 25%;
+  height: 900px;
+  background-image: url(../../assets/img/signup.jpg);
+  background-size: cover;
+  background-position: right;
+  color: #fff;
+  padding: 0 3%;
+  h2{
+    margin-top: 130px;
+    }
+  .sign_up_a_txt{
+    background: #fff;
+    padding: 6px 25%;
+    margin-top: 140%;
+    color: #35497b;
+    }
+  .sign_up_a_txt:hover{
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #fff;	
+    background: transparent;  
+    }
+  .sign_up_p_txt{
+    padding-top: 15px;
+    }
+  .form-group{
+    margin-bottom: 30px;    
+    input{
+      height: 40px;
+      border-radius: 0;
+      border: none;
+      box-shadow: unset;
+      border-bottom: 1px solid;
+      }
+    label{
+      letter-spacing: 0.5px;
+      font-weight: 500;
+	     }
+    }
+}
+
+
+@media (max-width: 1366px){
+  .ryt_img{
+    height: 740px;
+    }
+}
+@media (max-width: 1288px){
+	.ryt_img{
+		height: 660px;
+	}
+}	
+@media (max-width: 1024px){
+  .ryt_img{
+    height: 748px;
+    }
+}

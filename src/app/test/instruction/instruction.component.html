@@ -1,0 +1,20 @@
+<div class=" instruction-page">
+	<div class="commanHeader test">
+		{{loginUserData.ins_name}} Online 
+ 		<span *ngIf="testData.test_type == '1'">Speed</span>
+ 		<span *ngIf="testData.test_type == '0'">Practice</span> Test
+    </div>
+	<div class=" heading panel panel-default ">
+		<div class="panel-heading">Instruction FOR {{ testData.test_name }}</div>
+		<div class="panel-body">    
+	    	<h4>Please read the following instructions very carefully:</h4>
+			<ul>
+				<li>{{instruction?.test_instructions}}</li>
+			</ul>
+			<div class="instructionList"> 
+				<!-- <button type="button" *ngIf="btnCheck" class="btn btn-primary btn-light_blue pull-left" (click)="Back()">Back</button> -->
+				<button type="button" *ngIf="!btnCheck" class="btn btn-primary btn-light_green pull-right" (click)="next()">Start Test</button>
+			</div>
+		</div>		
+	</div>   
+</div>

@@ -1,0 +1,27 @@
+<div class="feedback-page ">
+    <div class="commanHeader text_center">
+        <span>Aplite Online Speed Test</span>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">LEAVE YOUR FEEDBACk</div>
+        <div class="panel-body">
+            <form class="form-group">
+                <div class="form-group">
+                    <rating [(ngModel)]="feed.rate" [max]="max" [readonly]="isReadonly" (onHover)="hoveringOver($event)" (onLeave)="resetStar()" [titles]="['one','two','three']" name="rate"></rating>
+                    <span class="label" [ngClass]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" [ngStyle]="{display: (overStar && !isReadonly) ? 'inline' : 'none'}">{{percent}}%</span><span style="margin:15px 0;"> Rate: <b>{{feed.rate}}</b></span>
+                </div>
+                <div class="form-group">
+                    <label for="feed">Your feedback</label><br>
+                    <textarea rows="4" cols="50" [(ngModel)]="feed.feedAns" type="text" name="instructions">
+			</textarea>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary Reg_btn" (click)="addFeedback(feed)">Go to Result</button>
+                    <button type="button" class="btn btn-primary Reg_btn" (click)="skipFeedback()">Skip</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+

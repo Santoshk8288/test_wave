@@ -1,0 +1,92 @@
+<nav class="navbar navbar-inverse" *ngIf="(authService.isLogin() && authService.getLoginUserData().usr_type != 1  && isCheckRoute())">
+  	<div class="container-fluid" >
+	    <div class="navbar-header">
+	      	<a class="navbar-brand" (click)="goDashboard()" *ngIf="authService.getLoginUserData().usr_type != 3">TestWave</a>
+	      	<a class="navbar-brand" *ngIf="authService.getLoginUserData().usr_type == 3">TestWave</a>
+	    </div>
+	    <ul class="nav navbar-nav ">
+			<li class="header" *ngIf="authService.getLoginUserData().usr_type != 3" [ngClass]="{active:((tabName=='/historyResult' && settab == 'Dashboard') || (settab == 'Dashboard' && tabName == '/Dashboard') || tabName == '/Dashboard' ) }"><a (click)="goDashboard()">Dashboard</a></li> 
+			<li class="header" [ngClass]="{active:tabName=='/test/testSeries'}"><a (click)="goTestseries()" >My Test</a></li>
+
+			<li class="header" [ngClass]="{active:(settab=='history' && tabName=='/test/history' ) || (settab=='history' && tabName=='/historyResult' )}"><a (click)="goHistory()">History</a></li>
+			
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown pull-right" [ngClass]="{active:tabName =='/test/profile' || tabName=='/changePassword' }">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon icon-user"></i>  <span class="text">{{authService.getLoginUserData().stu_fname === undefine ? authService.getLoginUserData().ins_name ==  undefine ? authService.getLoginUserData().gst_name : authService.getLoginUserData().ins_name : authService.getLoginUserData().stu_fname}}</span>
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+				    <li *ngIf="authService.getLoginUserData().usr_type != 3"><a (click)="goProfile()">Profile</a></li>
+					<li *ngIf="authService.getLoginUserData().usr_type != 3"><a (click)="changePass()">Change Password</a></li>
+				  	<li *ngIf="authService.getLoginUserData().usr_type != 3"><a (click)="logOut()">Logout</a></li>
+				  	<li *ngIf="authService.getLoginUserData().usr_type == 3"><a (click)="gestLogout()">Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+  	</div>
+</nav>
+<!-- <nav class="navbar navbar-inverse" *ngIf="(authService.isLogin() && authService.getLoginUserData().usr_type != 1  && isCheckRoute())">
+  	<div class="container-fluid" >
+	    <div class="navbar-header">
+	      	<a class="navbar-brand" (click)="goDashboard()" *ngIf="!loginDetails.usr_type == '3'">TestWave</a>
+	      	<a class="navbar-brand">TestWave</a>
+	    </div>
+	    <ul class="nav navbar-nav ">
+			<li class="header" [ngClass]="{active:((tabName=='/historyResult' && settab == 'Dashboard') || (settab == 'Dashboard' && tabName == '/Dashboard') || tabName == '/Dashboard' ) }"><a (click)="goDashboard()">Dashboard</a></li> 
+			<li class="header" [ngClass]="{active:tabName=='/test/testSeries'}"><a (click)="goTestseries()" >My Test</a></li>
+
+			<li class="header" [ngClass]="{active:(settab=='history' && tabName=='/test/history' ) || (settab=='history' && tabName=='/historyResult' )}"><a (click)="goHistory()">History</a></li>
+			
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown pull-right" [ngClass]="{active:tabName =='/test/profile' || tabName=='/changePassword' }">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon icon-user"></i>  <span class="text">{{authService.getLoginUserData().stu_fname === undefine ? authService.getLoginUserData().ins_name  : authService.getLoginUserData().stu_fname}}</span>
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+				    <li><a (click)="goProfile()">Profile</a></li>
+					<li><a (click)="changePass()">Change Password</a></li>
+				  	<li><a (click)="logOut()">Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+  	</div>
+</nav>
+
+<!-- Admin -->
+<nav class="navbar navbar-inverse" *ngIf="authService.isLogin() && authService.getLoginUserData().usr_type === 1 && isCheckRoute()">
+  <div class="container-fluid" >
+    <div class="navbar-header" >
+	 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" [routerLink]="['/admin/dashbord']" >TestWave</a>
+    </div>
+	<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="nav navbar-nav " >
+			  <li class="header" [ngClass]="{active:tabName=='/admin/dashbord'}" ><a [routerLink]="['/admin/dashbord']">Dashboard</a></li>
+			  <li class="header" [ngClass]="{active:tabName=='/admin/testList' || tabName.includes('admin/view/') || tabName.includes('newTestDetails') || tabName.includes('addPpr')|| tabName.includes('resultList')}"><a [routerLink] = "['/admin/testList']">Test</a></li>
+			  <li class="header" [ngClass]="{active:tabName=='/admin/testSeries' || tabName.includes('ViewTestSeriesComponent')|| tabName.includes('coupon') || tabName.includes('seriseCouponList')}" ><a [routerLink] = "['/admin/testSeries']">Test Series</a></li>
+			  <li class="header" [ngClass]="{active:tabName=='/admin/listQuestion' || tabName.includes('addQuestion') }"><a [routerLink] = "['/admin/listQuestion']">Question Bank</a></li>
+			  <li class="header" [ngClass]="{active:tabName=='/admin/courseList' || tabName.includes('addCourse')}"><a [routerLink] = "['/admin/courseList']">Course</a></li>
+			  <li class="header" [ngClass]="{active:tabName=='/admin/subject'}" ><a [routerLink] = "['/admin/subject']">Subject</a></li>
+			  <li class="header" [ngClass]="{active:tabName=='/admin/student' || tabName.includes('admin/registration') || tabName.includes('history') || (previousUrl == '/admin/student' && currenturl1=='historyResult')}"><a [routerLink] = "['/admin/student']">Student</a></li>
+			  <li class="header" [ngClass]="{active:tabName=='/admin/feedback' || tabName.includes('admin/feedback')}"><a [routerLink] = "['/admin/feedback']">Feedback</a></li>
+		</ul>		
+		<ul class="nav navbar-nav navbar-right">
+			  <li class="dropdown pull-right" [ngClass]="{active:tabName =='/admin/profile' || tabName=='/changePassword' }">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon icon-user"></i>  <span class="text">Welcome {{authService.getLoginUserData().ins_name}}</span>
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+				  <li><a (click)="goProfile()">Profile</a></li>
+				  <li><a (click)="changePass()">Change Password</a></li>
+				  <li><a (click)="logOut()">Logout</a></li>
+				</ul>
+			  </li>
+		</ul>    
+	</div>
+  </div>
+</nav>
+<app-loading-indicator></app-loading-indicator>
+<router-outlet></router-outlet>

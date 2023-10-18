@@ -1,0 +1,79 @@
+<div class="container-fluid add-questions body_top_padding">
+  <div class="row-fluid">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+				<ol class="breadcrumb">
+				  <li><a [routerLink]="['/admin/dashbord']" (click) = "clearTestId();">Dashboard</a></li>
+				  <li><a [routerLink]="['/admin/testList']" (click) = "clearTestId();">Test</a></li>
+				  <li><a (click)="goBack()">Edit Test</a></li>
+				  <li class="active">Questions</li>
+				</ol>
+		  </div>
+		  <div class="panel-body">
+			<div class=" col-md-6 left-side-select-box ">
+			  <table class="table table-hover">
+				<th colspan="2">
+				  <p class="pull-left">Questions</p>
+				  <div class="col-lg-8 col-md-6 search-box pull-right">
+				  	<div class="col-md-12 search_que_list">
+				   		<input type="radio" name="search" value='0'  [(ngModel)]='questionSearch'>  Search by text
+  						<input type="radio" name='search' value='1'  [(ngModel)]='questionSearch'> Search by tag
+				    </div>
+					<div class="input-group col-md-10 pull-right">
+					   <input type="text" class="form-control" placeholder="Search " name="srchQues" [(ngModel)]="srchQues" />
+					    <span class="input-group-btn">
+							<button class="btn btn-primary btn-light_blue" type="button" (click)="searchQuestion(srchQues)" >Search</button>
+					  	</span>
+					</div>
+				  </div>
+				  <ul class="list-inline nav nav-pills questionTag clear">
+					<li class="header" ><a (click)="searchBySubject('all')" [ngClass]="{'active': 'all' == searchId }">All</a></li>
+					<li class="header" *ngFor="let sub of testSubjects" ><a (click)="searchBySubject(sub.sub_id)" [ngClass]="{'active': sub.sub_id == searchId }">{{sub.sub_name}}</a></li>
+				  </ul>
+				</th>
+				<tr *ngFor="let ques of questions; let i=index">
+				  <td class="list_no">{{i+1}}</td>
+				  <td (click)="shiftLeftToRight(i)" [innerHTML]="ques.que_description | safeHtml"></td>
+				</tr>
+			  </table>
+			  <div class="col-xs-12 col-12">
+				<pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm" (pageChanged)="pageChanged($event)" [boundaryLinks]="true">⇐ </pagination>
+			  </div>
+			  <!-- <ul>
+						<li *ngFor="let ques of questions; let i=index"> 
+							<span (click)="shiftLeftToRight(i)">{{ques.que_description}}</span></li>
+					</ul> -->
+			</div>
+			<div class=" col-md-6 pull-right right-side-selected-box" style="display: inline-block;border:1px solid #000">
+			  <th>
+				<h5 class="pull-left">Questions</h5>
+				<!-- <ul class="list-inline clear"> -->
+				<!-- <li class="header">All</li> -->
+				<!-- <li class="header" *ngFor="let sub of testSubjects">{{sub.sub_name}}</li> -->
+				<!-- </ul> -->
+				<div class="pull-right select_filter">
+				  <label>Total question : {{totalQuestion}}</label>
+				  <select [(ngModel)]="chooseId" name="subid" (ngModelChange)="getSubjectId($event)">
+					<option *ngFor="let sub of testSubjects ; let i=index" [ngValue]="sub.tsmm_id" [selected]="sub.tsmm_id ==chooseId">{{sub.sub_name}}</option>
+					<!-- [selected]="sub.sub_name" -->
+				  </select>
+				</div>
+				<ul class="nav nav-pills questionTag clear" role="tablist">
+				  <li class="header" *ngFor="let sub of testSubjects;let i=index"><a (click)="getSubjectId(sub.tsmm_id,i)" [ngClass]="{'active': sub.tsmm_id == chooseId }">{{sub.sub_name}} <span class="badge">{{sub.quesCount}}/{{sub.tsmm_total_questions}}</span></a>
+				  </li>
+				</ul>
+			  </th>
+			  <ul class="selected-box">
+				<li *ngFor="let shiftQues of shiftSubject; let i=index">
+				  <p (click)="shiftRightToLeft(i,shiftQues)" [innerHTML]="shiftQues.que_description | safeHtml"></p>
+				</li>
+			  </ul>
+			  <!-- <button type="button" class="btn btn-primary btn-light_green" (click)="getSubQuestion(shiftSubject,subid)">Add Questions</button> -->
+			</div>
+			<div class="col-md-12 text-center">
+			  <button type="button" class="btn btn-primary btn-light_green" (click)="saveQuestion()">Save</button>
+			</div>
+		  </div>
+		</div>
+  </div>
+</div>

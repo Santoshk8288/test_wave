@@ -1,0 +1,9 @@
+.mainCls{
+	margin-right:0;
+	margin-left:0;
+}
+ul.list-inline {
+    background: #fff;
+    height: 40px;
+    line-height: 2.8;
+}
